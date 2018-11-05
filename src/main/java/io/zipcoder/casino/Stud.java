@@ -5,6 +5,10 @@ public class Stud extends CardGame implements Gamble, Game {
         super(minBet, maxBet);
     }
 
+    public void Deal() {
+
+    }
+
 
     public void determineWinner(){
 
@@ -33,11 +37,12 @@ public class Stud extends CardGame implements Gamble, Game {
     /**
      * Below 3 Implemented from Game
      */
-    public void Play() {
+
+    public void Quit() {
 
     }
 
-    public void Quit() {
+    public void StartGame() {
 
     }
 
