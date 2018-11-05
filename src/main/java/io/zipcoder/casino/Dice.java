@@ -1,10 +1,16 @@
 package io.zipcoder.casino;
 
 public class Dice {
-    private int sides;
     private int value;
 
     public void Roll(){
 
+        //Generate a random number between 1 and 6
+        //set value equal to this number
+
+    }
+
+    public int getValue() {
+        return value;
     }
 }
