@@ -8,7 +8,6 @@ public class DicePlayer {
     ScoreSheet scoreSheet = new ScoreSheet();
 
     public DicePlayer(Player player){
-        this.player = player
+        this.player = player;
     }
-
 }

@@ -1,5 +1,7 @@
 package io.zipcoder.casino;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public abstract class CardGame {
@@ -9,6 +11,7 @@ public abstract class CardGame {
     private int handSize;
     private Player playersTurn;
     private Player[] players;
+    private ArrayList<Card> deck = new ArrayList<>();
 
 
     CardGame(int minBet, int maxBet){
