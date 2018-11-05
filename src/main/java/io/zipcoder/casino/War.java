@@ -13,7 +13,7 @@ public class War extends CardGame implements Gamble, Game {
 
     public void Deal() {
 
-
+        //for every card in super.geDeck();
 
     }
 

@@ -35,4 +35,8 @@ public abstract class CardGame {
     public void faceUp(Card card){
         card.setVisibility(true);
     }
+
+    public ArrayList<Card> getDeck() {
+        return deck;
+    }
 }
