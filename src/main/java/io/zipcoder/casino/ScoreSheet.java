@@ -38,12 +38,10 @@ public class ScoreSheet {
         return topTotalScore + bottomTotalScore;
         }
 
-
-    public void setScore(int score) {
-
-    }
-
-    public void printScore(){
+    public void printScoreCard(){
+        for(ROW r : ROW.values()) {
+            System.out.println(r + ": " + scores.get(r));
+        }
 
     }
 
