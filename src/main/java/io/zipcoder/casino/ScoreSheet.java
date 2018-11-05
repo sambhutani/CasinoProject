@@ -47,40 +47,53 @@ public class ScoreSheet {
 
     }
 
-    public void setRow(ROW row){
+    public void setRow(ROW row, Dice[] cup){
 
         switch(row) {
             case ACES:
+                scores.put(ROW.ACES, calculateScore(ROW.ACES, cup);
                 break;
             case TWOS:
+                scores.put(ROW.TWOS, calculateScore(ROW.TWOS, cup);
                 break;
             case THREES:
+                scores.put(ROW.THREES, calculateScore(ROW.THREES, cup);
                 break;
             case FOURS:
+                scores.put(ROW.FOURS, calculateScore(ROW.FOURS, cup);
                 break;
             case FIVES:
+                scores.put(ROW.FIVES, calculateScore(ROW.FIVES, cup);
                 break;
             case SIXES:
+                scores.put(ROW.SIXES, calculateScore(ROW.SIXES, cup);
                 break;
             case THREEOFAKIND:
+                scores.put(ROW.THREEOFAKIND, calculateScore(ROW.THREEOFAKIND, cup);
                 break;
             case FOUROFAKIND:
+                scores.put(ROW.FOUROFAKIND, calculateScore(ROW.FOUROFAKIND, cup);
                 break;
             case FULLHOUSE:
+                scores.put(ROW.FULLHOUSE, calculateScore(ROW.FULLHOUSE, cup);
                 break;
             case SMALLSTRAIGHT:
+                scores.put(ROW.SMALLSTRAIGHT, calculateScore(ROW.SMALLSTRAIGHT, cup);
                 break;
             case LARGESTRAIGHT:
+                scores.put(ROW.LARGESTRAIGHT, calculateScore(ROW.LARGESTRAIGHT, cup);
                 break;
             case YAHTZEE:
+                scores.put(ROW.YAHTZEE, calculateScore(ROW.YAHTZEE, cup);
                 break;
             case CHANCE:
+                scores.put(ROW.CHANCE, calculateScore(ROW.CHANCE, cup);
                 break;
         }
 
     }
 
-    public void calculateScore(ROW row, int value){
+    public void calculateScore(ROW row, Dice[] cup){
 
     }
 }
