@@ -2,8 +2,7 @@ package io.zipcoder.casino;
 
 import java.util.HashMap;
 
-public class CardGame {
-    private boolean isFaceUp; // Deal() will change IF card is visible
+public abstract class CardGame {
     private int tablePot;
     private int minBet;
     private int maxBet;
@@ -17,12 +16,18 @@ public class CardGame {
         this.maxBet = maxBet;
     }
 
-    public void Deal(){
-        //faceUp/ faceDown
-    }
+    //use hand size to determine dealing
+    public abstract void Deal();
 
     public void Shuffle(){
 
     }
 
+    public void faceDown(Card card){
+        card.setVisibility(false);
+    }
+
+    public void faceUp(Card card){
+        card.setVisibility(true);
+    }
 }

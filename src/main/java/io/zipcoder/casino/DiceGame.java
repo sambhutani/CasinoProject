@@ -1,8 +1,8 @@
 package io.zipcoder.casino;
 
-public class DiceGame {
+public abstract class DiceGame {
     private int amoutdice;
-    int numberOfRolls;
+    private int numberOfRolls;
     private Player[] players;
-    private Player playersTrun;
+    private Player playersTurn;
 }

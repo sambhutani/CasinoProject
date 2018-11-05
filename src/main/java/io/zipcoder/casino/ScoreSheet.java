@@ -1,25 +1,32 @@
+//Lauren
+
 package io.zipcoder.casino;
 
-public class ScoreSheet {
-    private int score;
+import java.util.HashMap;
+import java.util.Map;
 
-    ScoreSheet(){
-        this.score = 0;
-    }
+public class ScoreSheet {
+    private Map<String, Integer> scores = new HashMap<>();
+
+    ScoreSheet(){}
 
     public int getScore() {
-        return score;
+        return 0;
     }
 
     public void setScore(int score) {
-        this.score = score;
+
     }
 
     public void printScore(){
-        System.out.println(score);
+
     }
 
     public void setRow(String setRow){
+
+    }
+
+    public void calculateScore(String row, int value){
 
     }
 }

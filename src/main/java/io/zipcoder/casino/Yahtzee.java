@@ -4,7 +4,7 @@ public class Yahtzee extends DiceGame implements Game{
     private Dice[] cup;
 
 
-    public void compareScore(Player player1, Player player2){
+    public void compareScore(DicePlayer player1, DicePlayer player2){
 
     }
 
@@ -15,14 +15,15 @@ public class Yahtzee extends DiceGame implements Game{
     public void stopRoll(){
 
     }
+
     /**
      * implemented from 'Game'
      */
-    public void Play() {
+    public void Quit() {
 
     }
 
-    public void Quit() {
+    public void StartGame() {
 
     }
 

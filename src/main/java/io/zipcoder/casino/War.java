@@ -1,13 +1,23 @@
 package io.zipcoder.casino;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class War extends CardGame implements Gamble, Game {
+
+    private ArrayList<Card> tableCards = new ArrayList<Card>();
 
     War(int minBet, int maxBet) {
         super(minBet, maxBet);
     }
 
+    public void Deal() {
+
+    }
+
+    /**
+     * Specific to war methods
+     */
     public void playCard(){
 
     }
@@ -22,7 +32,6 @@ public class War extends CardGame implements Gamble, Game {
 
     /**
      * Below 3 Implemented from Gamble
-     * @param betAmount
      */
     public void Bet(int betAmount) {
 
@@ -39,11 +48,12 @@ public class War extends CardGame implements Gamble, Game {
     /**
      * Below 3 Implemented from Game
      */
-    public void Play() {
+
+    public void Quit() {
 
     }
 
-    public void Quit() {
+    public void StartGame() {
 
     }
 
