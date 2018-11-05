@@ -21,6 +21,8 @@ public abstract class CardGame {
 
     public void Shuffle(){
 
+        //shuffle the card stack
+
     }
 
     public void faceDown(Card card){
