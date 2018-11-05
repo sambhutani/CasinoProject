@@ -11,11 +11,6 @@ public class War extends CardGame implements Gamble, Game {
         super(minBet, maxBet);
     }
 
-    public void Deal() {
-
-        //for every card in super.geDeck();
-
-    }
 
     /**
      * Specific to war methods
@@ -61,5 +56,14 @@ public class War extends CardGame implements Gamble, Game {
 
     public void StartRound() {
 
+    }
+
+    public void Deal() {
+
+        /*
+            for every player playing this game (i)
+                for every card in the deck (j)
+
+         */
     }
 }
