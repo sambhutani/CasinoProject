@@ -33,19 +33,19 @@ public class Console {
                 int[] warMinMax = getMinMax();
                 Game war = new War(warMinMax[0], warMinMax[1], 10);
                 ((War) war).addPlayers(player);
-                war.StartGame();
+                war.startGame();
                 break;
 
             case "three card stud":
                 int[] studMinMax = getMinMax();
                 Game stud = new Stud(studMinMax[0], studMinMax[1], 10);
                 ((Stud) stud).addPlayers(player);
-                stud.StartGame();
+                stud.startGame();
                 break;
 
             case "yahtzee":
                 Game yahtzee = new Yahtzee(player);
-                yahtzee.StartGame();
+                yahtzee.startGame();
                 break;
 
             default:

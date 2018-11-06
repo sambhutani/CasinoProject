@@ -25,9 +25,9 @@ public abstract class CardGame {
     }
 
     //use hand size to determine dealing
-    public abstract void Deal();
+    public abstract void deal();
 
-    public void Shuffle(){
+    public void shuffle(){
 
         //shuffle the card stack
 

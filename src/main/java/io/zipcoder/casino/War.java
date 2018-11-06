@@ -33,15 +33,14 @@ public class War extends CardGame implements Gamble, Game {
     /**
      * Below 3 Implemented from Gamble
      */
-    public void Bet(int betAmount) {
+    public void bet(int betAmount) {
         super.changeTablePot(betAmount);
     }
 
-    public int Payout(int payoutAmount) {
+    public void payout() {
         if(super.getWinner() != null){
             super.getWinner().changeBalance(super.getTablePot());
         }
-        return 0;
     }
 
     public void payAnte() {
@@ -56,17 +55,17 @@ public class War extends CardGame implements Gamble, Game {
      * Below 3 Implemented from Game
      */
 
-    public void Quit() {
+    public void quit() {
 
     }
 
-    public void StartGame() {
+    public void startGame() {
         Deck deck = new Deck();
         payAnte();
-        Deal();
+        deal();
     }
 
-    public void StartRound() {
+    public void startRound() {
         //player plays a card faceup
         //remove cards from player hand
         //pc plays a card faceup
@@ -79,7 +78,7 @@ public class War extends CardGame implements Gamble, Game {
         //insert discard into hand facedown
     }
 
-    public void Deal() {
+    public void deal() {
         //while there are cards in the deck
         while(super.getDeck().size() != 0){
             //for each player playing the game
