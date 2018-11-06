@@ -134,7 +134,7 @@ public class ScoreSheet {
                 numbers.remove(i);
             }
         }
-        System.out.println(numbers);
+
         while(numbers.size() > 4) {
             if (numbers.get(0) + 1 != numbers.get(1)) {
                 numbers.remove(0);
@@ -143,7 +143,6 @@ public class ScoreSheet {
             }
         }
         if(numbers.size() < 4) return false;
-        System.out.println(numbers);
 
         boolean check = false;
         if(numbers.toString().equals("[1, 2, 3, 4]") ||
