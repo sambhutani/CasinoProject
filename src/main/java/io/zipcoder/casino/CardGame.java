@@ -79,4 +79,8 @@ public abstract class CardGame {
     public int getHandSize() {
         return handSize;
     }
+
+    public void setHandSize(int handSize){
+        this.handSize = handSize;
+    }
 }
