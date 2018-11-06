@@ -7,8 +7,8 @@ public class War extends CardGame implements Gamble, Game {
 
     private ArrayList<Card> tableCards = new ArrayList<Card>();
 
-    War(int minBet, int maxBet) {
-        super(minBet, maxBet);
+    War(int minBet, int maxBet, int ante) {
+        super(minBet, maxBet, ante);
     }
 
 
@@ -16,14 +16,16 @@ public class War extends CardGame implements Gamble, Game {
      * Specific to war methods
      */
     public void playCard(){
-
+        //take a card from the hand
+        //add it to the tablecard face up
     }
 
     public void warMethod(){
-
+        //take three cards from your hand face down
+        //play one card face up
     }
 
-    public void determineWinner(){
+    public void determineWinner(Card player1card, Card player2card){
 
     }
 
@@ -40,7 +42,7 @@ public class War extends CardGame implements Gamble, Game {
     }
 
     public void Ante(int anteAmount) {
-        //
+
     }
 
     /**
