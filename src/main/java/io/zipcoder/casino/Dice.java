@@ -5,8 +5,7 @@ public class Dice {
 
     public void roll(){
 
-        //Generate a random number between 1 and 6
-        //set value equal to this number
+
 
     }
 

@@ -10,7 +10,7 @@ public abstract class CardGame {
     private int maxBet;
     private int handSize;
     private Player playersTurn;
-    private Player[] players;
+    private ArrayList<CardPlayer> players;
     private ArrayList<Card> deck = new ArrayList<>();
 
 
@@ -39,4 +39,9 @@ public abstract class CardGame {
     public ArrayList<Card> getDeck() {
         return deck;
     }
+
+    public ArrayList<CardPlayer> getPlayers() {
+        return players;
+    }
+
 }
