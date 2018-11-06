@@ -29,7 +29,7 @@ public class Yahtzee extends DiceGame implements Game{
 
     }
 
-    public void StartGame(DicePlayer dicePlayer) {
+    public void StartGame() {
         Dice dice1 = new Dice();
         Dice dice2 = new Dice();
         Dice dice3 = new Dice();
