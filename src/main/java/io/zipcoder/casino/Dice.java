@@ -1,11 +1,17 @@
 package io.zipcoder.casino;
 
 public class Dice {
-    private int sides;
+
+
     private int value;
 
-    public void Roll(){
+    public void roll(){
+        value = (int) (Math.random()*6+1);
+    }
 
+    public int getValue()
+    {
+        return value;
     }
 
     public int getValue() {
