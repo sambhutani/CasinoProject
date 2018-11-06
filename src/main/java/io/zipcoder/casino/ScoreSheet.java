@@ -6,10 +6,11 @@ import java.util.*;
 
 public class ScoreSheet {
 
-    private enum ROW{
+    public enum ROW{
         ACES, TWOS, THREES, FOURS, FIVES, SIXES, THREEOFAKIND, FOUROFAKIND, FULLHOUSE, SMALLSTRAIGHT, LARGESTRAIGHT, YAHTZEE, CHANCE;
     }
     private Map<ROW, Integer> scores = new EnumMap<>(ROW.class);
+    private static final int size = ROW.values().length;
 
     ScoreSheet(){
 
@@ -37,9 +38,21 @@ public class ScoreSheet {
         }
 
     public void printScoreCard(){
-        for(ROW r : ROW.values()) {
-            System.out.println(r + ": " + scores.get(r));
-        }
+        System.out.println(
+                "1. Aces: Totals all Ones ** Score **" + getScore(ScoreSheet.ROW.ACES) + "\n" +
+                "2. Twos: Totals all Twos ** Score **" + getScore(ScoreSheet.ROW.TWOS) + "\n" +
+                "3. Threes: Totals all Threes ** Score **" + getScore(ScoreSheet.ROW.THREES) + "\n" +
+                "4. Fours: Totals all Fours ** Score **" + getScore(ScoreSheet.ROW.FOURS) + "\n" +
+                "5. Fives: Totals all Fives ** Score **" + getScore(ScoreSheet.ROW.FIVES) + "\n" +
+                "6. Sixes: Totals all Sixes ** Score **" + getScore(ScoreSheet.ROW.SIXES) + "\n" +
+                "7. 3 of a Kind ** Score **" + getScore(ScoreSheet.ROW.THREEOFAKIND) + "\n" +
+                "8. 4 of a Kind ** Score **" + getScore(ScoreSheet.ROW.FOUROFAKIND) + "\n" +
+                "9. Full House ** Score **" + getScore(ScoreSheet.ROW.FULLHOUSE) + "\n" +
+                "10. Small Straight: Sequence of 4 ** Score **" + getScore(ScoreSheet.ROW.SMALLSTRAIGHT) + "\n" +
+                "11. Large Striaght: Sequence of 5 ** Score **" + getScore(ScoreSheet.ROW.LARGESTRAIGHT) + "\n" +
+                "12. Yahtzee: 5 of a Kind ** Score **" + getScore(ScoreSheet.ROW.YAHTZEE) + "\n" +
+                "13. Chance: Sum of Dice ** Score **" + getScore(ScoreSheet.ROW.CHANCE) + "\n" +
+                "****************** TOTAL SCORE ******************" + getTotalScore());
 
     }
 
@@ -203,5 +216,13 @@ public class ScoreSheet {
             score += i;
         }
         return score;
+    }
+
+    public static int getSize() {
+        return size;
+    }
+
+    public Integer getScore(ROW row) {
+        return this.scores.get(row);
     }
 }
