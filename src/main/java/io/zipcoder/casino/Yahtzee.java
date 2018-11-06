@@ -1,5 +1,6 @@
 package io.zipcoder.casino;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Yahtzee extends DiceGame implements Game{
@@ -17,12 +18,21 @@ public class Yahtzee extends DiceGame implements Game{
         player1.getScoreSheet().getTotalScore();
     }
 
-    public void reRoll(){
+    public void reRoll(String diceToRoll){
 
-    }
-
-    public void stopRoll(){
-
+        String[] numbersString = diceToRoll.replace(",", "").split(" ");
+        ArrayList<Integer> numbers = new ArrayList<>();
+        for(String s: numbersString) {
+            numbers.add(Integer.parseInt(s));
+        }
+        for(Integer i : numbers) {
+            for(int j = 0; j < 5; j++) {
+                if(i == dicePlayer.getCup()[j].getValue()) {
+                    dicePlayer.getCup()[j].roll();
+                    break;
+                }
+            }
+        }
     }
 
     /**
@@ -55,7 +65,7 @@ public class Yahtzee extends DiceGame implements Game{
             dicePlayer.printCup();
 
             roundRoutine();
-
+            recordingScore();
         }
 
     }
@@ -114,21 +124,16 @@ public class Yahtzee extends DiceGame implements Game{
                     break;
 
                 case 2:
+                    System.out.println("Which numbers would you like to reroll?");
+                    String diceToRoll = scanner.next();
+                    reRoll(diceToRoll);
+                    dicePlayer.printCup();
                     break;
+
                 case 3:
                     break;
             }
         }
-
-        //ask if they want to score, or roll again?
-
-            //roll again if requested
-
-                //continue to roll until no more rolls are left
-
-        //ask user how they would like to score
-
-        //calculate the users score
 
     }
 }
