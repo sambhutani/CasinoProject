@@ -26,7 +26,6 @@ public class DeckTest {
         //THEN
         Card testCard = deck.pullCard();
         String actual = testCard.getName();
-
         Assert.assertEquals(expected, actual);
     }
 }

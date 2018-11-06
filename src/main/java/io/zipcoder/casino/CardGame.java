@@ -9,14 +9,16 @@ public abstract class CardGame {
     private int minBet;
     private int maxBet;
     private int handSize;
+    private int ante;
     private Player playersTurn;
     private ArrayList<CardPlayer> players;
     private ArrayList<Card> deck = new ArrayList<>();
 
 
-    CardGame(int minBet, int maxBet){
+    CardGame(int minBet, int maxBet, int ante){
         this.minBet = minBet;
         this.maxBet = maxBet;
+        this.ante = ante;
     }
 
     //use hand size to determine dealing

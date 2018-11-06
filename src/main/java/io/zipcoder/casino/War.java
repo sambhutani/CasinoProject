@@ -31,15 +31,16 @@ public class War extends CardGame implements Gamble, Game {
      * Below 3 Implemented from Gamble
      */
     public void Bet(int betAmount) {
-
+        //add money to the pot
     }
 
     public int Payout(int payoutAmount) {
+
         return 0;
     }
 
     public void Ante(int anteAmount) {
-
+        //
     }
 
     /**
