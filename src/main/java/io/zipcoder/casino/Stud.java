@@ -66,7 +66,7 @@ public class Stud extends CardGame implements Gamble, Game {
 
     }
 
-    public void
+    //public void
 
     /**
      * Deal each player(and dealer) 3 face down cards in turn
@@ -97,3 +97,4 @@ public class Stud extends CardGame implements Gamble, Game {
             super.getDeck().remove(card);
         }
     }
+    */
