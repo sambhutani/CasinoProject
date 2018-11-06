@@ -33,6 +33,7 @@ public class Console {
                 int[] warMinMax = getMinMax();
                 Game war = new War(warMinMax[0], warMinMax[1], 10);
                 ((War) war).addPlayers(player);
+                ((War) war).addNpc();
                 war.StartGame();
                 break;
 
@@ -40,6 +41,7 @@ public class Console {
                 int[] studMinMax = getMinMax();
                 Game stud = new Stud(studMinMax[0], studMinMax[1], 10);
                 ((Stud) stud).addPlayers(player);
+                ((Stud) stud).addNpc();
                 stud.StartGame();
                 break;
 
@@ -101,4 +103,5 @@ public class Console {
         command = command.toLowerCase().trim();
         return command;
     }
+
 }

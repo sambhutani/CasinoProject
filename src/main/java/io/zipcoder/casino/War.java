@@ -62,8 +62,10 @@ public class War extends CardGame implements Gamble, Game {
 
     public void StartGame() {
         System.out.println("Welcome to war!");
+        super.chooseStatingPlayer();
         payAnte();
         Deal();
+        //super.chooseNextTurn();
     }
 
     public void StartRound() {
@@ -95,5 +97,7 @@ public class War extends CardGame implements Gamble, Game {
                 super.getDeck().remove(card);
             }
         }
+        System.out.println(super.getPlayersTurn().getPlayer().getName() + "has: " + super.getPlayersTurn().getHand().size() + " cards.");
     }
+
 }
