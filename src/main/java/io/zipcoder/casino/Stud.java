@@ -9,7 +9,6 @@ public class Stud extends CardGame implements Gamble, Game {
 
     }
 
-
     public void determineWinner(){
 
     }
@@ -26,9 +25,7 @@ public class Stud extends CardGame implements Gamble, Game {
 
     }
 
-    public int Payout(int payoutAmount) {
-        return 0;
-    }
+    public void Payout() {}
 
     public void Ante(int anteAmount) {
 

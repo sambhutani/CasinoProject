@@ -44,9 +44,9 @@ public class Card {
         this.suit = suit;
     }
 
-    public CardValue getCardValue()
+    public int getCardValue()
     {
-        return cardValue;
+        return cardValue.getCardValue();
     }
 
     public void setCardValue(CardValue cardValue)
