@@ -52,8 +52,9 @@ public class Yahtzee extends DiceGame implements Game, Gamble{
             for (Dice d : dicePlayer.getCup()) {
                 d.roll();
             }
-            System.out.println("You rolled:");
+            System.out.println("\nYou rolled:");
             dicePlayer.printCup();
+            System.out.println();
 
             roundRoutine();
             recordingScore();
@@ -80,7 +81,7 @@ public class Yahtzee extends DiceGame implements Game, Gamble{
                 for (Dice d : dicePlayer.getCup()) {
                     d.roll();
                 }
-                System.out.println("You rolled:");
+                System.out.println("\nYou rolled:");
                 dicePlayer.printCup();
                 System.out.println();
                 break;
@@ -90,8 +91,9 @@ public class Yahtzee extends DiceGame implements Game, Gamble{
                 Scanner in2 = new Scanner(System.in);
                 String diceToRoll = in2.next();
                 reRoll(diceToRoll);
-                System.out.println("You rolled:");
+                System.out.println("\nYou rolled:");
                 dicePlayer.printCup();
+                System.out.println();
                 break;
 
             case 3:
