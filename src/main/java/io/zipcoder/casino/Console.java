@@ -44,7 +44,7 @@ public class Console {
                 break;
 
             case "yahtzee":
-                Game yahtzee = new Yahtzee();
+                Game yahtzee = new Yahtzee(player);
                 yahtzee.StartGame();
                 break;
 

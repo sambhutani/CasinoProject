@@ -91,6 +91,8 @@ public class War extends CardGame implements Gamble, Game {
                 CardPlayer player = super.getPlayers().get(i);
                 //add the card to their hand
                 player.getHand().add(card);
+                //remove the card from the deck
+                super.getDeck().remove(card);
             }
         }
     }

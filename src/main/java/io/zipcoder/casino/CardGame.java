@@ -75,4 +75,8 @@ public abstract class CardGame {
     public Player getWinner() {
         return winner;
     }
+
+    public int getHandSize() {
+        return handSize;
+    }
 }
