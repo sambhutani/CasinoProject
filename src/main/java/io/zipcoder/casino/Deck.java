@@ -11,6 +11,10 @@ public class Deck {
      * Then, they are shuffled
      */
     public Deck(){
+        createDeck();
+    }
+
+    public void createDeck(){
         this.deck = new ArrayList<>();
 
         for (int i = 0; i < 13; i++){
@@ -21,7 +25,6 @@ public class Deck {
                 this.deck.add(card);
             }
         }
-
         Collections.shuffle(deck);
     }
 

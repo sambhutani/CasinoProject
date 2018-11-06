@@ -10,4 +10,8 @@ public class CardPlayer {
     public ArrayList<Card> getHand(){
         return hand;
     }
+
+    public Player getPlayer() {
+        return player;
+    }
 }

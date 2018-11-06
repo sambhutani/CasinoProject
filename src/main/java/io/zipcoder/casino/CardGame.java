@@ -46,4 +46,11 @@ public abstract class CardGame {
         return players;
     }
 
+    public void setDeck(ArrayList<Card> deck) {
+        this.deck = deck;
+    }
+
+    public int getAnte(){
+        return ante;
+    }
 }

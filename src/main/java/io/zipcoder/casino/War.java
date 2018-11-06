@@ -41,8 +41,12 @@ public class War extends CardGame implements Gamble, Game {
         return 0;
     }
 
-    public void Ante(int anteAmount) {
-
+    public void payAnte() {
+        for(int i = 0; i < super.getPlayers().size(); i ++)
+        {
+            CardPlayer player = super.getPlayers().get(i);
+            player.getPlayer().changeBalance(-super.getAnte());
+        }
     }
 
     /**
@@ -54,11 +58,22 @@ public class War extends CardGame implements Gamble, Game {
     }
 
     public void StartGame() {
-
+        Deck deck = new Deck();
+        payAnte();
+        Deal();
     }
 
     public void StartRound() {
+        //player plays a card faceup
+        //remove cards from player hand
+        //pc plays a card faceup
+        //remove cards from npc hand
+        //determinewinner
+        //add all table cards to winners discard facedown
 
+        //when player is out of cards
+        //shuffle players discard
+        //insert discard into hand facedown
     }
 
     public void Deal() {
