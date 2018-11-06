@@ -48,6 +48,9 @@ public class Yahtzee extends DiceGame implements Game{
             d.roll();
         }
         dicePlayer.printCup();
+
+        //roundRoutine();
+
     }
 
     public void roundRoutine(){
