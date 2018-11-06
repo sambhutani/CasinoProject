@@ -29,7 +29,7 @@ public class Yahtzee extends DiceGame implements Game{
 
     }
 
-    public void StartGame(DicePlayer dicePlayer) {
+    public void StartGame() {
         Dice dice1 = new Dice();
         Dice dice2 = new Dice();
         Dice dice3 = new Dice();
@@ -41,7 +41,6 @@ public class Yahtzee extends DiceGame implements Game{
         dicePlayer.getCup()[2] = dice3;
         dicePlayer.getCup()[3] = dice4;
         dicePlayer.getCup()[4] = dice5;
-
     }
 
     public void StartRound() {
@@ -49,5 +48,19 @@ public class Yahtzee extends DiceGame implements Game{
             d.roll();
         }
         dicePlayer.printCup();
+    }
+
+    public void roundRoutine(){
+
+        //ask if they want to score, or roll again?
+
+            //roll again if requested
+
+                //continue to roll until no more rolls are left
+
+        //ask user how they would like to score
+
+        //calculate the users score
+
     }
 }
