@@ -174,7 +174,7 @@ public class Yahtzee extends DiceGame implements Game, Gamble{
 
     @Override
     public void bet(int betAmount) {
-        dicePlayer.getPlayer().changeBalance(betAmount);
+        dicePlayer.getPlayer().changeBalance(betAmount * -1);
     }
 
     @Override
