@@ -11,9 +11,12 @@ public class Stud extends CardGame implements Gamble, Game {
 
     }
     
-    public void playCard(Player player, Card card){
+    public void playCard(Player player, Card card) {
         card.setVisibility(true);               //CARD isVISIBLE
         Printer.showCard(player, card);         //PRINT card name to CONSOLE
+    }
+
+    public void fold(){
     }
 
     /**
@@ -33,11 +36,10 @@ public class Stud extends CardGame implements Gamble, Game {
         player.changeBalance(betAmount * -1);
     }
 
-    public int Payout(int payoutAmount) {
+    public void Payout(){
         if(super.getWinner() != null){
             super.getWinner().changeBalance(super.getTablePot());
         }
-        return 0;
     }
 
     public void payAnte() {

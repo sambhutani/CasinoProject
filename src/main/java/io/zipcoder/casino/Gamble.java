@@ -2,5 +2,6 @@ package io.zipcoder.casino;
 
 public interface Gamble {
      void Bet(Player player, int betAmount);
-     int Payout(int payoutAmount);
+     // void Bet(int betAmount);
+     void Payout();
 }

@@ -2,11 +2,13 @@ package io.zipcoder.casino;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class War extends CardGame implements Gamble, Game {
 
     private ArrayList<Card> tableCards = new ArrayList<Card>();
+    private Scanner scanner = new Scanner(System.in);
 
     War(int minBet, int maxBet, int ante) {
         super(minBet, maxBet, ante);
@@ -17,8 +19,29 @@ public class War extends CardGame implements Gamble, Game {
      * Specific to war methods
      */
     public void playCard(){
-        //take a card from the hand
-        //add it to the tablecard face up
+        //if the player has cards in their hand
+        if(super.getPlayersTurn().getHand().size() > 0) {
+            //pull out a card to play
+            Card card = super.getPlayersTurn().getHand().get(0);
+            //play the card face up, on the table
+            card.setVisibility(true);
+            tableCards.add(card);
+            //store the last played card in the players wrapper class
+            super.getPlayersTurn().setPlayedCard(card);
+            //remove this card from their hand
+            super.getPlayersTurn().getHand().remove(card);
+            //print the card that was played
+            System.out.println(super.getPlayersTurn().getPlayer().getName() + " has played " + card.getName() + " and has " + super.getPlayersTurn().getHand().size() + " cards left.");
+        //if the player has not cards in their hand but has cards in their discard, pickup their discard and play a card
+        } else if(super.getPlayersTurn().getHand().size() == 0 && super.getPlayersTurn().getDiscard().size() > 0) {
+            System.out.println(super.getPlayersTurn().getPlayer().getName() + " ran out of cards and picked up their discard pile.");
+            super.getPlayersTurn().getHand().addAll(super.getPlayersTurn().getDiscard());
+            super.getPlayersTurn().setDiscard(new ArrayList<Card>());
+            playCard();
+        //if the person has no cards in their hand, and no cards in discard they lose.
+        } else if(super.getPlayersTurn().getHand().size() == 0 && super.getPlayersTurn().getDiscard().size() == 0){
+            super.setLoser(super.getPlayersTurn().getPlayer());
+        }
     }
 
     public void warMethod(){
@@ -26,22 +49,33 @@ public class War extends CardGame implements Gamble, Game {
         //play one card face up
     }
 
-    public void determineWinner(Card player1card, Card player2card){
+    public CardPlayer determineWinner(){
 
+        int max = 0;
+        CardPlayer winner = null;
+
+        for(int i = 0; i < getPlayers().size(); i ++){
+            CardPlayer player = getPlayers().get(i);
+            if(player.getPlayedCard().getCardValue() > max){
+                max = player.getPlayedCard().getCardValue();
+                winner = player;
+            }
+        }
+        System.out.println("The winner is " + winner.getPlayer().getName());
+        return winner;
     }
 
     /**
      * Below 3 Implemented from Gamble
      */
-    public void Bet(int betAmount) {
+    public void Bet(Player player, int betAmount) {
         super.changeTablePot(betAmount);
     }
 
-    public int Payout(int payoutAmount) {
-        if(super.getWinner() != null){
+    public void Payout() {
+        if(super.getWinner() != null) {
             super.getWinner().changeBalance(super.getTablePot());
         }
-        return 0;
     }
 
     public void payAnte() {
@@ -65,10 +99,40 @@ public class War extends CardGame implements Gamble, Game {
         super.chooseStatingPlayer();
         payAnte();
         Deal();
-        //super.chooseNextTurn();
+        StartRound();
     }
 
     public void StartRound() {
+        while(super.getLoser() == null) {
+            System.out.println("Type play to play the top card from your pile.");
+            String input = scanner.next();
+            input = input.toLowerCase().trim();
+
+            if (input.equals("play")) {
+                //each player
+                for (CardPlayer player : super.getPlayers()) {
+                    //plays a card, then
+                    playCard();
+                    //the turn updates to be the next players.
+                    super.chooseNextTurn();
+                }
+                //determine the winner
+                CardPlayer winner = determineWinner();
+
+                System.out.println(winner.getPlayer().getName() + " has been rewarded " + tableCards.size() + " cards.");
+
+                //add all the table cards to the players discard
+                winner.addDiscard(tableCards);
+                //clear the table cards pile
+                tableCards = new ArrayList<Card>();
+
+                //if the user does not type play
+            } else {
+                //display a message
+                System.out.println("Sorry, I don't understand that command.");
+            }
+        }
+
         //player plays a card faceup
         //remove cards from player hand
         //pc plays a card faceup
@@ -97,8 +161,9 @@ public class War extends CardGame implements Gamble, Game {
                 super.getDeck().remove(card);
             }
         }
+
         System.out.println(super.getPlayersTurn().getPlayer().getName() +
                 "has: " + super.getPlayersTurn().getHand().size() + " cards.");
-    }
 
+    }
 }

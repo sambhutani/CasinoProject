@@ -14,6 +14,7 @@ public abstract class CardGame {
     private int ante;
     private CardPlayer playersTurn;
     private Player winner = null;
+    private Player loser = null;
     private ArrayList<CardPlayer> players = new ArrayList<CardPlayer>();
     private Deck deck = new Deck();
 
@@ -106,7 +107,6 @@ public abstract class CardGame {
                 break;
             }
         }
-        System.out.println("it is now " + playersTurn.getPlayer().getName() + "'s turn");
     }
 
     public void chooseNextTurn(){
@@ -116,13 +116,25 @@ public abstract class CardGame {
             if((players.indexOf(playersTurn) + 1) == players.size()){
                 //start again at the starting player
                 playersTurn = players.get(0);
-                System.out.println("it is now " + playersTurn.getPlayer().getName() + "'s turn");
+                //System.out.println("it is now " + playersTurn.getPlayer().getName() + "'s turn");
 
             //if it is not the end of the turn circle
             } else {
                 playersTurn = players.get(players.indexOf(playersTurn) + 1);
-                System.out.println("it is now " + playersTurn.getPlayer().getName() + "'s turn");
+                //System.out.println("it is now " + playersTurn.getPlayer().getName() + "'s turn");
             }
         }
+    }
+
+    public void printTurn(){
+        System.out.println("it is now " + playersTurn.getPlayer().getName() + "'s turn");
+    }
+
+    public Player getLoser() {
+        return loser;
+    }
+
+    public void setLoser(Player loser) {
+        this.loser = loser;
     }
 }
