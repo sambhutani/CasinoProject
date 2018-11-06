@@ -7,4 +7,8 @@ public class Dice {
     public void Roll(){
 
     }
+
+    public int getValue() {
+        return value;
+    }
 }

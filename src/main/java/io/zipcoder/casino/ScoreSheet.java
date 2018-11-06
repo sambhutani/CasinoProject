@@ -45,7 +45,10 @@ public class ScoreSheet {
 
     public void setRow(ROW row, Dice[] cup){
 
-        ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(cup);
+        ArrayList<Integer> numbers = new ArrayList<>();
+        for(Dice d : cup) {
+            numbers.add(d.getValue());
+        }
         Collections.sort(numbers);
 
         switch(row) {
@@ -89,14 +92,14 @@ public class ScoreSheet {
                 }
                 break;
             case SMALLSTRAIGHT:
-                if(checkSmallStraight()) {
+                if(checkSmallStraight(numbers)) {
                     scores.put(ROW.SMALLSTRAIGHT, 30);
                 } else {
                     scores.put(ROW.SMALLSTRAIGHT, 0);
                 }
                 break;
             case LARGESTRAIGHT:
-                if(checkLargeStraight()) {
+                if(checkLargeStraight(numbers)) {
                     scores.put(ROW.LARGESTRAIGHT, 40);
                 } else {
                     scores.put(ROW.LARGESTRAIGHT, 0);
@@ -116,7 +119,7 @@ public class ScoreSheet {
 
     }
 
-    private boolean checkFullHouse(ArrayList<Integer> numbers) {
+    public boolean checkFullHouse(ArrayList<Integer> numbers) {
 
         boolean check2 = checkOfaKind(numbers, 2);
         boolean check3 = checkOfaKind(numbers, 3);
@@ -124,17 +127,49 @@ public class ScoreSheet {
         return (check2 && check3);
     }
 
-    private boolean checkSmallStraight() {
+    public boolean checkSmallStraight(ArrayList<Integer> numbers) {
 
-        return false;
+        for(int i = 0; i < numbers.size() - 1; i++) {
+            if(numbers.get(i) == numbers.get(i+1)) {
+                numbers.remove(i);
+            }
+        }
+        System.out.println(numbers);
+        while(numbers.size() > 4) {
+            if (numbers.get(0) + 1 != numbers.get(1)) {
+                numbers.remove(0);
+            } else {
+                numbers.remove(4);
+            }
+        }
+        if(numbers.size() < 4) return false;
+        System.out.println(numbers);
+
+        boolean check = false;
+        if(numbers.toString().equals("[1, 2, 3, 4]") ||
+                numbers.toString().equals("[2, 3, 4, 5]") ||
+                numbers.toString().equals("[3, 4, 5, 6]")) {
+            check = true;
+        } else {
+            check = false;
+        }
+        return check;
     }
 
-    private boolean checkLargeStraight() {
+    public boolean checkLargeStraight(ArrayList<Integer> numbers) {
 
-        return false;
+        boolean check = false;
+        for(int i = 0; i < numbers.size() - 1; i++) {
+            if((numbers.get(i) + 1) == numbers.get(i + 1)) {
+                check = true;
+            } else {
+                check = false;
+            }
+        }
+        return check;
     }
 
-    private boolean checkOfaKind(ArrayList<Integer> numbers, int numb) {
+    public boolean checkOfaKind(ArrayList<Integer> numbers, int numb) {
 
         int[] counts = new int[6];
 
@@ -147,7 +182,7 @@ public class ScoreSheet {
         return false;
     }
 
-    private int scoreNumbers(ArrayList<Integer> numbers, int numb){
+    public int scoreNumbers(ArrayList<Integer> numbers, int numb){
 
         int count = 0;
         for(Integer i : numbers) {
@@ -158,7 +193,7 @@ public class ScoreSheet {
         return count * numb;
     }
 
-    private int scoreTotalDice(ArrayList<Integer> numbers) {
+    public int scoreTotalDice(ArrayList<Integer> numbers) {
 
         int score = 0;
         for(Integer i : numbers) {
