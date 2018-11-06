@@ -1,13 +1,15 @@
 package io.zipcoder.casino;
 
+import java.util.ArrayList;
+
 public class Printer {
 
-    public static void noMatchingGameName(String[] gameNames){
+    public static void noMatchingGameName(ArrayList<String> gameNames){
 
         String games = "";
 
-        for(int i = 0; i < gameNames.length; i ++){
-            games += gameNames[i] + " ";
+        for(int i = 0; i < gameNames.size(); i ++){
+            games += gameNames.get(i) + " ";
         }
         games = games.trim();
 
@@ -24,5 +26,13 @@ public class Printer {
 
     public static void unacceptableMinBet(){
         System.out.println("Your bet must be above $0");
+    }
+
+    public static void studHandsDealt(){
+        System.out.println("Each player Dealt 3 cards");
+    }
+
+    public static void showCard(Player player, Card card){
+        System.out.println(player.getName() + " shows a " + card.getName());
     }
 }

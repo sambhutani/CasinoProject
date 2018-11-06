@@ -1,15 +1,20 @@
 package io.zipcoder.casino;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Console {
     private Scanner scanner = new Scanner(System.in);
-    private String[] gameLib = {"yahtzee", "war", "three card stud"};
+    private ArrayList<String> gameLib = new ArrayList<>();
     private Game game = null;
     private Player player;
     private boolean running = true;
 
-    Console(){}
+    Console(){
+        gameLib.add("yahtzee");
+        gameLib.add("war");
+        gameLib.add("three card stud");
+    }
 
     public void createAccount()
     {
@@ -24,15 +29,16 @@ public class Console {
 
     public void chooseGame()
     {
-        System.out.println("Please choose a game to play!");
-        String command = getCommand();
-
+        //get the command from the user
+        String command = continueAskGame();
+        //process the command
         switch(command){
 
             case "war":
                 int[] warMinMax = getMinMax();
                 Game war = new War(warMinMax[0], warMinMax[1], 10);
                 ((War) war).addPlayers(player);
+                ((War) war).addNpc();
                 war.StartGame();
                 break;
 
@@ -40,6 +46,7 @@ public class Console {
                 int[] studMinMax = getMinMax();
                 Game stud = new Stud(studMinMax[0], studMinMax[1], 10);
                 ((Stud) stud).addPlayers(player);
+                ((Stud) stud).addNpc();
                 stud.StartGame();
                 break;
 
@@ -101,4 +108,22 @@ public class Console {
         command = command.toLowerCase().trim();
         return command;
     }
+
+    public String continueAskGame(){
+        String command = "";
+
+        System.out.println("Please choose a game to play!");
+        command = getCommand();
+
+        if(gameLib.indexOf(command) == -1)
+        {
+            while(gameLib.indexOf(command) == -1)
+            {
+                Printer.noMatchingGameName(gameLib);
+                command = getCommand();
+            }
+        }
+        return command;
+    }
+
 }
