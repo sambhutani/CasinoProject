@@ -14,4 +14,16 @@ public class CardPlayer {
     public Player getPlayer() {
         return player;
     }
+
+    public Card playCard(){
+
+        if(hand.size() > 0){
+            Card card = hand.get(hand.size()-1);
+            hand.remove(hand.size()-1);
+
+            return card;
+        }
+
+        return null;
+    }
 }
