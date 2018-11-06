@@ -14,7 +14,4 @@ public class Dice {
         return value;
     }
 
-    public int getValue() {
-        return value;
-    }
 }

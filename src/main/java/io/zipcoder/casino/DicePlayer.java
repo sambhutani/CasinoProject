@@ -10,4 +10,18 @@ public class DicePlayer {
     public DicePlayer(Player player){
         this.player = player;
     }
+
+    public ScoreSheet getScoreSheet() {
+        return scoreSheet;
+    }
+
+    public Dice[] getCup() {
+        return cup;
+    }
+
+    public void printCup() {
+        for(Dice d : cup) {
+            System.out.print(d.getValue() + " ");
+        }
+    }
 }
