@@ -61,7 +61,7 @@ public class War extends CardGame implements Gamble, Game {
     }
 
     public void StartGame() {
-        Deck deck = new Deck();
+        System.out.println("Welcome to war!");
         payAnte();
         Deal();
     }
@@ -81,6 +81,7 @@ public class War extends CardGame implements Gamble, Game {
 
     public void Deal() {
         //while there are cards in the deck
+        System.out.println("about to deal");
         while(super.getDeck().size() != 0){
             //for each player playing the game
             for(int i = 0; i < super.getPlayers().size(); i ++)
@@ -93,7 +94,9 @@ public class War extends CardGame implements Gamble, Game {
                 player.getHand().add(card);
                 //remove the card from the deck
                 super.getDeck().remove(card);
+                System.out.println("Dealing");
             }
+            System.out.println("delt");
         }
     }
 }

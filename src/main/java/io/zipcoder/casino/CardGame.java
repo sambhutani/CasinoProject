@@ -15,7 +15,7 @@ public abstract class CardGame {
     private Player playersTurn;
     private Player winner = null;
     private ArrayList<CardPlayer> players = new ArrayList<CardPlayer>();
-    private ArrayList<Card> deck = new ArrayList<>();
+    private Deck deck = new Deck();
 
 
     CardGame(int minBet, int maxBet, int ante){
@@ -41,7 +41,7 @@ public abstract class CardGame {
         card.setVisibility(true);
     }
 
-    public ArrayList<Card> getDeck() {
+    public Deck getDeck() {
         return deck;
     }
 
@@ -56,7 +56,7 @@ public abstract class CardGame {
         }
     }
 
-    public void setDeck(ArrayList<Card> deck) {
+    public void setDeck(Deck deck) {
         this.deck = deck;
     }
 
