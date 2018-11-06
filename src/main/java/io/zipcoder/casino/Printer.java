@@ -25,4 +25,12 @@ public class Printer {
     public static void unacceptableMinBet(){
         System.out.println("Your bet must be above $0");
     }
+
+    public static void studHandsDealt(){
+        System.out.println("Each player Dealt 3 cards");
+    }
+
+    public static void showCard(Player player, Card card){
+        System.out.println(player.getName() + " shows a " + card.getName());
+    }
 }
