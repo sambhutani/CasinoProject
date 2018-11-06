@@ -1,11 +1,11 @@
 package io.zipcoder.casino;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Console {
-    private String[] gameLib = {"yahtzee", "war", "three card stud"};
-    private String command = "";
     private Scanner scanner = new Scanner(System.in);
-    private Game[] games = {new War(), new Stud(), new Yahtzee()};
+    private String[] gameLib = {"yahtzee", "war", "three card stud"};
+    private Game game = null;
     private Player player;
     private boolean running = true;
 
@@ -13,16 +13,82 @@ public class Console {
 
     public void createAccount()
     {
+        System.out.println("Hello, what is your name?");
+        String name = scanner.next();
 
-        /*
-            ask the player for their name.
-            ask the player for their starting balance
-            create the player.
-         */
+        System.out.println("How much money are you bringing to the table?");
+        int balance = getIntFromUser();
+
+        player = new Player(name, balance);
     }
 
-    public void chooseGame(String gameName)
+    public void chooseGame()
     {
+        System.out.println("Please choose a game to play!");
+        String command = getCommand();
+
+        switch(command){
+
+            case "war":
+                int[] warMinMax = getMinMax();
+                Game war = new War(warMinMax[0], warMinMax[1], 10);
+                ((War) war).addPlayers(player);
+                war.StartGame();
+                break;
+
+            case "three card stud":
+                int[] studMinMax = getMinMax();
+                Game stud = new Stud(studMinMax[0], studMinMax[1], 10);
+                ((Stud) stud).addPlayers(player);
+                stud.StartGame();
+                break;
+
+            case "yahtzee":
+                Game yahtzee = new Yahtzee();
+                yahtzee.StartGame();
+                break;
+
+            default:
+                Printer.noMatchingGameName(gameLib);
+                break;
+        }
+    }
+
+    public int getIntFromUser(){
+        try{
+            int num = scanner.nextInt();
+            return num;
+        }catch(InputMismatchException err){
+            System.out.println("Please enter a number");
+            scanner.next();
+        }
+        return -1;
+    }
+
+    public int[] getMinMax(){
+        Printer.getBet("minimum bet");
+        int min = 0;
+        while(min <= 0){
+            min = getIntFromUser();
+            if(min < 0){
+                Printer.unacceptableMinBet();
+            }
+        }
+
+        Printer.getBet("maximum bet");
+        int max = 0;
+        while(max < min) {
+            max = getIntFromUser();
+            if(max < min){
+                Printer.unacceptableMaxBet(min);
+            }
+        }
+        int[] minMax = {min, max};
+        return minMax;
+    }
+
+    public String getCommand() {
+        String command = "";
         String input = scanner.next();
         input = input.toLowerCase().trim();
 
@@ -33,37 +99,6 @@ public class Console {
             }
         }
         command = command.toLowerCase().trim();
-        switch(command){
-
-            case "yahtzee":
-
-                break;
-
-            case "war":
-
-                break;
-
-
-            case "three card stud":
-
-                break;
-
-            case "3 card stud":
-
-                break;
-
-
-            default:
-                Printer.noMatchingGameName(gameLib);
-                break;
-        }
-
-
-        /*
-            ask the user for min max bet at the table
-            ask the user which game they would like to play
-            create a new game with min and max set based
-            on user input
-         */
+        return command;
     }
 }

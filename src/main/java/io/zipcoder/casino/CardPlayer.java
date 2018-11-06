@@ -7,6 +7,10 @@ public class CardPlayer {
     private ArrayList<Card> hand = new ArrayList<>();
     private ArrayList<Card> discard = new ArrayList<>();
 
+    public CardPlayer(Player player){
+        this.player = player;
+    }
+
     public ArrayList<Card> getHand(){
         return hand;
     }

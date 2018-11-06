@@ -2,6 +2,7 @@ package io.zipcoder.casino;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.regex.Pattern;
 
 public class War extends CardGame implements Gamble, Game {
 
@@ -33,11 +34,13 @@ public class War extends CardGame implements Gamble, Game {
      * Below 3 Implemented from Gamble
      */
     public void Bet(int betAmount) {
-        //add money to the pot
+        super.changeTablePot(betAmount);
     }
 
     public int Payout(int payoutAmount) {
-
+        if(super.getWinner() != null){
+            super.getWinner().changeBalance(super.getTablePot());
+        }
         return 0;
     }
 

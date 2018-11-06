@@ -1,8 +1,8 @@
 package io.zipcoder.casino;
 
 public class Stud extends CardGame implements Gamble, Game {
-    public Stud(int minBet, int maxBet) {
-        super(minBet, maxBet);
+    public Stud(int minBet, int maxBet, int ante) {
+        super(minBet, maxBet, ante);
     }
 
     public void Deal() {
