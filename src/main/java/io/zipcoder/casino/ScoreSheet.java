@@ -45,76 +45,80 @@ public class ScoreSheet {
 
     public void setRow(ROW row, Dice[] cup){
 
-        ArrayList<Integer> numbers = new ArrayList<>();
-        for(Dice d : cup) {
-            numbers.add(d.getValue());
-        }
-        Collections.sort(numbers);
+        if(scores.get(row) != null) {
+            System.out.println("Error, you have already filled that row");
+        } else {
+            ArrayList<Integer> numbers = new ArrayList<>();
+            for (Dice d : cup) {
+                numbers.add(d.getValue());
+            }
+            Collections.sort(numbers);
 
-        switch(row) {
-            case ACES:
-                scores.put(ROW.ACES, scoreNumbers(numbers, 1));
-                break;
-            case TWOS:
-                scores.put(ROW.TWOS, scoreNumbers(numbers, 2));
-                break;
-            case THREES:
-                scores.put(ROW.THREES, scoreNumbers(numbers, 3));
-                break;
-            case FOURS:
-                scores.put(ROW.FOURS, scoreNumbers(numbers, 4));
-                break;
-            case FIVES:
-                scores.put(ROW.FIVES, scoreNumbers(numbers, 5));
-                break;
-            case SIXES:
-                scores.put(ROW.SIXES, scoreNumbers(numbers, 6));
-                break;
-            case THREEOFAKIND:
-                if(checkOfaKind(numbers, 3)) {
-                scores.put(ROW.THREEOFAKIND, scoreTotalDice(numbers));
-                } else {
-                    scores.put(ROW.THREEOFAKIND, 0); 
-                }
-                break;
-            case FOUROFAKIND:
-                if(checkOfaKind(numbers, 4)) {
-                    scores.put(ROW.FOUROFAKIND, scoreTotalDice(numbers));
-                } else {
-                    scores.put(ROW.FOUROFAKIND, 0);
-                }
-                break;
-            case FULLHOUSE:
-                if(checkOfaKind(numbers,5) || checkFullHouse(numbers)) {
-                    scores.put(ROW.FULLHOUSE, 25);
-                } else {
-                    scores.put(ROW.FULLHOUSE, 0);
-                }
-                break;
-            case SMALLSTRAIGHT:
-                if(checkSmallStraight(numbers)) {
-                    scores.put(ROW.SMALLSTRAIGHT, 30);
-                } else {
-                    scores.put(ROW.SMALLSTRAIGHT, 0);
-                }
-                break;
-            case LARGESTRAIGHT:
-                if(checkLargeStraight(numbers)) {
-                    scores.put(ROW.LARGESTRAIGHT, 40);
-                } else {
-                    scores.put(ROW.LARGESTRAIGHT, 0);
-                }
-                break;
-            case YAHTZEE:
-                if(checkOfaKind(numbers, 5)) {
-                    scores.put(ROW.YAHTZEE, 50);
-                } else {
-                    scores.put(ROW.YAHTZEE, 0);
-                }
-                break;
-            case CHANCE:
-                scores.put(ROW.CHANCE, scoreTotalDice(numbers));
-                break;
+            switch (row) {
+                case ACES:
+                    scores.put(ROW.ACES, scoreNumbers(numbers, 1));
+                    break;
+                case TWOS:
+                    scores.put(ROW.TWOS, scoreNumbers(numbers, 2));
+                    break;
+                case THREES:
+                    scores.put(ROW.THREES, scoreNumbers(numbers, 3));
+                    break;
+                case FOURS:
+                    scores.put(ROW.FOURS, scoreNumbers(numbers, 4));
+                    break;
+                case FIVES:
+                    scores.put(ROW.FIVES, scoreNumbers(numbers, 5));
+                    break;
+                case SIXES:
+                    scores.put(ROW.SIXES, scoreNumbers(numbers, 6));
+                    break;
+                case THREEOFAKIND:
+                    if (checkOfaKind(numbers, 3)) {
+                        scores.put(ROW.THREEOFAKIND, scoreTotalDice(numbers));
+                    } else {
+                        scores.put(ROW.THREEOFAKIND, 0);
+                    }
+                    break;
+                case FOUROFAKIND:
+                    if (checkOfaKind(numbers, 4)) {
+                        scores.put(ROW.FOUROFAKIND, scoreTotalDice(numbers));
+                    } else {
+                        scores.put(ROW.FOUROFAKIND, 0);
+                    }
+                    break;
+                case FULLHOUSE:
+                    if (checkOfaKind(numbers, 5) || checkFullHouse(numbers)) {
+                        scores.put(ROW.FULLHOUSE, 25);
+                    } else {
+                        scores.put(ROW.FULLHOUSE, 0);
+                    }
+                    break;
+                case SMALLSTRAIGHT:
+                    if (checkSmallStraight(numbers)) {
+                        scores.put(ROW.SMALLSTRAIGHT, 30);
+                    } else {
+                        scores.put(ROW.SMALLSTRAIGHT, 0);
+                    }
+                    break;
+                case LARGESTRAIGHT:
+                    if (checkLargeStraight(numbers)) {
+                        scores.put(ROW.LARGESTRAIGHT, 40);
+                    } else {
+                        scores.put(ROW.LARGESTRAIGHT, 0);
+                    }
+                    break;
+                case YAHTZEE:
+                    if (checkOfaKind(numbers, 5)) {
+                        scores.put(ROW.YAHTZEE, 50);
+                    } else {
+                        scores.put(ROW.YAHTZEE, 0);
+                    }
+                    break;
+                case CHANCE:
+                    scores.put(ROW.CHANCE, scoreTotalDice(numbers));
+                    break;
+            }
         }
 
     }
