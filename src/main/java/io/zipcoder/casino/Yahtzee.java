@@ -196,9 +196,9 @@ public class Yahtzee extends DiceGame implements Game, Gamble{
         } else if (score > 400) {
             payOut = getBid() * 5;
         } else if (score > 300) {
-            payOut = getBid() * 2;
+            payOut = getBid() * 3;
         } else if (score > 200) {
-            payOut = getBid();
+            payOut = getBid() * 2;
         } else {
             payOut = 0;
         }
