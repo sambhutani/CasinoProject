@@ -1,6 +1,8 @@
 package io.zipcoder.casino;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Yahtzee extends DiceGame implements Game, Gamble{
@@ -43,6 +45,7 @@ public class Yahtzee extends DiceGame implements Game, Gamble{
         startRound();
         System.out.println("You scored " + dicePlayer.getScoreSheet().getTotalScore() + " points.");
         payout();
+        dicePlayer.printBalanceAtEnd();
         //Return to console.
     }
 
@@ -71,7 +74,7 @@ public class Yahtzee extends DiceGame implements Game, Gamble{
 
     public void giveOptions() {
         int choice = 0;
-        System.out.println("Would you like to:\n1. Roll all dice again.\n2. Roll some dice again.\n3. Stop rolling and score.");
+        System.out.print("Would you like to:\n1. Roll all dice again.\n2. Roll some dice again.\n3. Stop rolling and score.\nNumber of Selection: ");
 
         Scanner in = new Scanner(System.in);
         choice = in.nextInt();
@@ -89,7 +92,7 @@ public class Yahtzee extends DiceGame implements Game, Gamble{
             case 2:
                 System.out.println("Which numbers would you like to reroll? List the numbers separated by spaces.");
                 Scanner in2 = new Scanner(System.in);
-                String diceToRoll = in2.next();
+                String diceToRoll = in2.nextLine();
                 reRoll(diceToRoll);
                 System.out.println("\nYou rolled:");
                 dicePlayer.printCup();
@@ -103,11 +106,12 @@ public class Yahtzee extends DiceGame implements Game, Gamble{
 
     public void reRoll(String diceToRoll){
 
-        String[] numbersString = diceToRoll.replace(",", "").split(" ");
+        String[] numbersString = diceToRoll.split(" ");
         ArrayList<Integer> numbers = new ArrayList<>();
         for(String s: numbersString) {
             numbers.add(Integer.parseInt(s));
         }
+
         for(Integer i : numbers) {
             for(int j = 0; j < 5; j++) {
                 if(i == dicePlayer.getCup()[j].getValue()) {
@@ -125,11 +129,11 @@ public class Yahtzee extends DiceGame implements Game, Gamble{
         ScoreSheet.ROW row = ScoreSheet.ROW.CHANCE;
 
         while(validEntry) {
-            System.out.println("Which row would you like to apply your turn to on the scoresheet?.\n" +
-                    "Remember you can only use each row once!");
-            System.out.println();
             dicePlayer.getScoreSheet().printScoreCard();
             System.out.println();
+            System.out.println("Which row would you like to apply your turn to on the scoresheet?.\n" +
+                    "Remember you can only use each row once!");
+            System.out.print("Row:");
 
             Scanner scanner2 = new Scanner(System.in);
             choice = scanner2.nextInt();

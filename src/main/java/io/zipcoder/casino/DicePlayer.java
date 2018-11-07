@@ -29,4 +29,10 @@ public class DicePlayer {
     public Player getPlayer() {
         return player;
     }
+
+    public void printBalanceAtEnd() {
+        System.out.println("Your total balance is now: $" + getPlayer().getCurrentBalance());
+    }
 }
+
+

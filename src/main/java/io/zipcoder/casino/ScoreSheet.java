@@ -32,83 +32,83 @@ public class ScoreSheet {
 
 
     public void printScoreCard(){
-        System.out.print("1. Aces: Totals all Ones ** Score ** ");
+        System.out.print(String.format("%-35s","1. Aces: Totals all Ones"));
         if(getScore(ScoreSheet.ROW.ACES) != null) {
-            System.out.println(getScore(ScoreSheet.ROW.ACES));
+            System.out.println("** " + getScore(ScoreSheet.ROW.ACES) + " **");
         } else {
-            System.out.println("open");
+            System.out.println("** open **");
         }
-        System.out.print("2. Twos: Totals all Twos ** Score ** ");
+        System.out.print(String.format("%-35s","2. Twos: Totals all Twos"));
         if(getScore(ScoreSheet.ROW.TWOS) != null) {
-            System.out.println(getScore(ScoreSheet.ROW.TWOS));
+            System.out.println("** " + getScore(ScoreSheet.ROW.TWOS) + " **");
         } else {
-            System.out.println("open");
+            System.out.println("** open **");
         }
-        System.out.print( "3. Threes: Totals all Threes ** Score ** ");
+        System.out.print(String.format("%-35s", "3. Threes: Totals all Threes"));
         if(getScore(ScoreSheet.ROW.THREES) != null) {
-            System.out.println(getScore(ScoreSheet.ROW.THREES));
+            System.out.println("** " + getScore(ScoreSheet.ROW.THREES) + " **");
         } else {
-            System.out.println("open");
+            System.out.println("** open **");
         }
-        System.out.print( "4. Fours: Totals all Fours ** Score ** ");
+        System.out.print(String.format("%-35s", "4. Fours: Totals all Fours"));
         if(getScore(ScoreSheet.ROW.FOURS) != null) {
-            System.out.println(getScore(ScoreSheet.ROW.FOURS));
+            System.out.println("** " + getScore(ScoreSheet.ROW.FOURS) + " **");
         } else {
-            System.out.println("open");
+            System.out.println("** open **");
         }
-        System.out.print( "5. Fives: Totals all Fives ** Score ** ");
+        System.out.print(String.format("%-35s", "5. Fives: Totals all Fives"));
         if(getScore(ScoreSheet.ROW.FIVES) != null) {
-            System.out.println(getScore(ScoreSheet.ROW.FIVES));
+            System.out.println("** " + getScore(ScoreSheet.ROW.FIVES) + " **");
         } else {
-            System.out.println("open");
+            System.out.println("** open **");
         }
-        System.out.print( "6. Sixes: Totals all Sixes ** Score ** ");
+        System.out.print(String.format("%-35s", "6. Sixes: Totals all Sixes"));
         if(getScore(ScoreSheet.ROW.SIXES) != null) {
-            System.out.println(getScore(ScoreSheet.ROW.SIXES));
+            System.out.println("** " + getScore(ScoreSheet.ROW.SIXES) + " **");
         } else {
-            System.out.println("open");
+            System.out.println("** open **");
         }
-        System.out.print( "7. 3 of a Kind ** Score ** ");
+        System.out.print(String.format("%-35s", "7. 3 of a Kind"));
         if(getScore(ScoreSheet.ROW.THREEOFAKIND) != null) {
-            System.out.println(getScore(ScoreSheet.ROW.THREEOFAKIND));
+            System.out.println("** " + getScore(ScoreSheet.ROW.THREEOFAKIND) + " **");
         } else {
-            System.out.println("open");
+            System.out.println("** open **");
         }
-        System.out.print( "8. 4 of a Kind ** Score ** ");
+        System.out.print(String.format("%-35s", "8. 4 of a Kind"));
         if(getScore(ScoreSheet.ROW.FOUROFAKIND) != null) {
-            System.out.println(getScore(ScoreSheet.ROW.FOUROFAKIND));
+            System.out.println("** " + getScore(ScoreSheet.ROW.FOUROFAKIND) + " **");
         } else {
-            System.out.println("open");
+            System.out.println("** open **");
         }
-        System.out.print( "9. Full House ** Score ** ");
+        System.out.print(String.format("%-35s", "9. Full House"));
         if(getScore(ScoreSheet.ROW.FULLHOUSE) != null) {
-            System.out.println(getScore(ScoreSheet.ROW.FULLHOUSE));
+            System.out.println("** " + getScore(ScoreSheet.ROW.FULLHOUSE) + " **");
         } else {
-            System.out.println("open");
+            System.out.println("** open **");
         }
-        System.out.print("10. Small Straight: Sequence of 4 ** Score ** ");
+        System.out.print(String.format("%-35s","10. Small Straight: Sequence of 4"));
         if(getScore(ScoreSheet.ROW.SMALLSTRAIGHT) != null) {
-            System.out.println(getScore(ScoreSheet.ROW.SMALLSTRAIGHT));
+            System.out.println("** " + getScore(ScoreSheet.ROW.SMALLSTRAIGHT) + " **");
         } else {
-            System.out.println("open");
+            System.out.println("** open **");
         }
-        System.out.print("11. Large Striaght: Sequence of 5 ** Score ** ");
+        System.out.print(String.format("%-35s","11. Large Striaght: Sequence of 5"));
         if(getScore(ScoreSheet.ROW.LARGESTRAIGHT) != null) {
-            System.out.println(getScore(ScoreSheet.ROW.LARGESTRAIGHT));
+            System.out.println("** " + getScore(ScoreSheet.ROW.LARGESTRAIGHT) + " **");
         } else {
-            System.out.println("open");
+            System.out.println("** open **");
         }
-        System.out.print("12. Yahtzee: 5 of a Kind ** Score ** ");
+        System.out.print(String.format("%-35s","12. Yahtzee: 5 of a Kind "));
         if(getScore(ScoreSheet.ROW.YAHTZEE) != null) {
-            System.out.println(getScore(ScoreSheet.ROW.YAHTZEE));
+            System.out.println("** " + getScore(ScoreSheet.ROW.YAHTZEE) + " **");
         } else {
-            System.out.println("open");
+            System.out.println("** open **");
         }
-        System.out.print( "13. Chance: Sum of Dice ** Score ** ");
+        System.out.print(String.format("%-35s", "13. Chance: Sum of Dice"));
         if(getScore(ScoreSheet.ROW.CHANCE) != null) {
-            System.out.println(getScore(ScoreSheet.ROW.CHANCE));
+            System.out.println("** " + getScore(ScoreSheet.ROW.CHANCE) + " **");
         } else {
-            System.out.println("open");
+            System.out.println("** open **");
         }
         System.out.println();
     }
