@@ -247,7 +247,7 @@ public class ScoreSheet {
             counts[numbers.get(i) - 1]++;
 
         for (int i: counts) {
-            if (i == numb) return true;
+            if (i >= numb) return true;
         }
         return false;
     }
