@@ -14,7 +14,7 @@ public class Console {
     public void createAccount()
     {
         System.out.println("Hello, what is your name?");
-        String name = scanner.next();
+        String name = scanner.nextLine();
 
         System.out.println("How much money are you bringing to the table?");
         int balance = getIntFromUser();
@@ -99,7 +99,7 @@ public class Console {
 
     public String getCommand() {
         String command = "";
-        String input = scanner.next();
+        String input = scanner.nextLine();
         input = input.toLowerCase().trim();
 
         for(String name : gameLib){
