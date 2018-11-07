@@ -7,7 +7,7 @@ public class Console {
     private String[] gameLib = {"yahtzee", "war", "three card stud"};
     private Game game = null;
     private Player player;
-    private boolean running = true;
+    public boolean running = true;
 
     Console(){}
 
@@ -24,8 +24,7 @@ public class Console {
 
     public void chooseGame()
     {
-        boolean play = true;
-        while(play) {
+        while(running) {
             System.out.println("Please choose a game to play!");
             String command = getCommand();
 
@@ -54,12 +53,7 @@ public class Console {
                     Printer.noMatchingGameName(gameLib);
                     break;
             }
-            System.out.println("Do you want to play another game? Y or N");
-            Scanner in = new Scanner(System.in);
-            String response = in.next();
-            if (response.equalsIgnoreCase("N")) {
-                play = false;
-            }
+
         }
 
     }

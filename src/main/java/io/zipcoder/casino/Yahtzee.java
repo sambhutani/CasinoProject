@@ -50,6 +50,7 @@ public class Yahtzee extends DiceGame implements Game, Gamble {
         payout();
         dicePlayer.printBalanceAtEnd();
         System.out.println();
+
     }
 
     public void startRound() {
