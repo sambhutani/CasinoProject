@@ -2,14 +2,17 @@
 
 package io.zipcoder.casino;
 
+import com.sun.tools.example.debug.expr.ASCII_UCodeESC_CharStream;
+
 import java.util.*;
 
 public class ScoreSheet {
 
-    private enum ROW{
+    public enum ROW{
         ACES, TWOS, THREES, FOURS, FIVES, SIXES, THREEOFAKIND, FOUROFAKIND, FULLHOUSE, SMALLSTRAIGHT, LARGESTRAIGHT, YAHTZEE, CHANCE;
     }
     private Map<ROW, Integer> scores = new EnumMap<>(ROW.class);
+    private static final int size = ROW.values().length;
 
     ScoreSheet(){
 
@@ -17,37 +20,101 @@ public class ScoreSheet {
 
     public int getTotalScore() {
 
-        int topTotalScore = 0;
-        int bottomTotalScore = 0;
-        int index = 0;
-        for(ROW r : ROW.values()) {
-            while (index < 6) {
-                topTotalScore += scores.get(r);
-                index++;
-            }
-            if (topTotalScore >= 63) {
-                topTotalScore += 35;
-            }
-            while (index >= 6) {
-                bottomTotalScore += scores.get(r);
-                index++;
-            }
+        int totalScore = 0;
+        totalScore = (totalScore + getScore(ScoreSheet.ROW.ACES) + getScore(ScoreSheet.ROW.TWOS) + getScore(ScoreSheet.ROW.THREES) + getScore(ScoreSheet.ROW.FOURS) + getScore(ScoreSheet.ROW.FIVES) + getScore(ScoreSheet.ROW.SIXES));
+        if (totalScore >= 63) {
+            totalScore += 35;
         }
-        return topTotalScore + bottomTotalScore;
-        }
+        totalScore = (totalScore + getScore(ScoreSheet.ROW.THREEOFAKIND) + getScore(ScoreSheet.ROW.FOUROFAKIND) + getScore(ScoreSheet.ROW.FULLHOUSE) + getScore(ScoreSheet.ROW.SMALLSTRAIGHT) + getScore(ScoreSheet.ROW.LARGESTRAIGHT) + getScore(ScoreSheet.ROW.YAHTZEE) + getScore(ScoreSheet.ROW.CHANCE));
+
+        return totalScore;
+    }
+
 
     public void printScoreCard(){
-        for(ROW r : ROW.values()) {
-            System.out.println(r + ": " + scores.get(r));
+        System.out.print(String.format("%-35s","1. Aces: Totals all Ones"));
+        if(getScore(ScoreSheet.ROW.ACES) != null) {
+            System.out.println("** " + getScore(ScoreSheet.ROW.ACES) + " **");
+        } else {
+            System.out.println("** open **");
         }
-
+        System.out.print(String.format("%-35s","2. Twos: Totals all Twos"));
+        if(getScore(ScoreSheet.ROW.TWOS) != null) {
+            System.out.println("** " + getScore(ScoreSheet.ROW.TWOS) + " **");
+        } else {
+            System.out.println("** open **");
+        }
+        System.out.print(String.format("%-35s", "3. Threes: Totals all Threes"));
+        if(getScore(ScoreSheet.ROW.THREES) != null) {
+            System.out.println("** " + getScore(ScoreSheet.ROW.THREES) + " **");
+        } else {
+            System.out.println("** open **");
+        }
+        System.out.print(String.format("%-35s", "4. Fours: Totals all Fours"));
+        if(getScore(ScoreSheet.ROW.FOURS) != null) {
+            System.out.println("** " + getScore(ScoreSheet.ROW.FOURS) + " **");
+        } else {
+            System.out.println("** open **");
+        }
+        System.out.print(String.format("%-35s", "5. Fives: Totals all Fives"));
+        if(getScore(ScoreSheet.ROW.FIVES) != null) {
+            System.out.println("** " + getScore(ScoreSheet.ROW.FIVES) + " **");
+        } else {
+            System.out.println("** open **");
+        }
+        System.out.print(String.format("%-35s", "6. Sixes: Totals all Sixes"));
+        if(getScore(ScoreSheet.ROW.SIXES) != null) {
+            System.out.println("** " + getScore(ScoreSheet.ROW.SIXES) + " **");
+        } else {
+            System.out.println("** open **");
+        }
+        System.out.print(String.format("%-35s", "7. 3 of a Kind"));
+        if(getScore(ScoreSheet.ROW.THREEOFAKIND) != null) {
+            System.out.println("** " + getScore(ScoreSheet.ROW.THREEOFAKIND) + " **");
+        } else {
+            System.out.println("** open **");
+        }
+        System.out.print(String.format("%-35s", "8. 4 of a Kind"));
+        if(getScore(ScoreSheet.ROW.FOUROFAKIND) != null) {
+            System.out.println("** " + getScore(ScoreSheet.ROW.FOUROFAKIND) + " **");
+        } else {
+            System.out.println("** open **");
+        }
+        System.out.print(String.format("%-35s", "9. Full House"));
+        if(getScore(ScoreSheet.ROW.FULLHOUSE) != null) {
+            System.out.println("** " + getScore(ScoreSheet.ROW.FULLHOUSE) + " **");
+        } else {
+            System.out.println("** open **");
+        }
+        System.out.print(String.format("%-35s","10. Small Straight: Sequence of 4"));
+        if(getScore(ScoreSheet.ROW.SMALLSTRAIGHT) != null) {
+            System.out.println("** " + getScore(ScoreSheet.ROW.SMALLSTRAIGHT) + " **");
+        } else {
+            System.out.println("** open **");
+        }
+        System.out.print(String.format("%-35s","11. Large Striaght: Sequence of 5"));
+        if(getScore(ScoreSheet.ROW.LARGESTRAIGHT) != null) {
+            System.out.println("** " + getScore(ScoreSheet.ROW.LARGESTRAIGHT) + " **");
+        } else {
+            System.out.println("** open **");
+        }
+        System.out.print(String.format("%-35s","12. Yahtzee: 5 of a Kind "));
+        if(getScore(ScoreSheet.ROW.YAHTZEE) != null) {
+            System.out.println("** " + getScore(ScoreSheet.ROW.YAHTZEE) + " **");
+        } else {
+            System.out.println("** open **");
+        }
+        System.out.print(String.format("%-35s", "13. Chance: Sum of Dice"));
+        if(getScore(ScoreSheet.ROW.CHANCE) != null) {
+            System.out.println("** " + getScore(ScoreSheet.ROW.CHANCE) + " **");
+        } else {
+            System.out.println("** open **");
+        }
+        System.out.println();
     }
 
     public void setRow(ROW row, Dice[] cup){
 
-        if(scores.get(row) != null) {
-            System.out.println("Error, you have already filled that row");
-        } else {
             ArrayList<Integer> numbers = new ArrayList<>();
             for (Dice d : cup) {
                 numbers.add(d.getValue());
@@ -121,7 +188,7 @@ public class ScoreSheet {
             }
         }
 
-    }
+
 
     public boolean checkFullHouse(ArrayList<Integer> numbers) {
 
@@ -180,7 +247,7 @@ public class ScoreSheet {
             counts[numbers.get(i) - 1]++;
 
         for (int i: counts) {
-            if (i == numb) return true;
+            if (i >= numb) return true;
         }
         return false;
     }
@@ -203,5 +270,13 @@ public class ScoreSheet {
             score += i;
         }
         return score;
+    }
+
+    public static int getSize() {
+        return size;
+    }
+
+    public Integer getScore(ROW row) {
+        return this.scores.get(row);
     }
 }

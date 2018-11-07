@@ -1,13 +1,15 @@
 package io.zipcoder.casino;
 
+import java.util.ArrayList;
+
 public class Printer {
 
-    public static void noMatchingGameName(String[] gameNames){
+    public static void noMatchingGameName(ArrayList<String> gameNames){
 
         String games = "";
 
-        for(int i = 0; i < gameNames.length; i ++){
-            games += gameNames[i] + " ";
+        for(int i = 0; i < gameNames.size(); i ++){
+            games += gameNames.get(i) + " ";
         }
         games = games.trim();
 
