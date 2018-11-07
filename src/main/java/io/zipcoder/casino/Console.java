@@ -14,12 +14,13 @@ public class Console {
         gameLib.add("yahtzee");
         gameLib.add("war");
         gameLib.add("three card stud");
+        gameLib.add("quit");
     }
 
     public void createAccount()
     {
         System.out.println("Hello, what is your name?");
-        String name = scanner.nextLine();
+        String name = scanner.next();
 
         System.out.println("How much money are you bringing to the table?");
         int balance = getIntFromUser();
@@ -29,8 +30,7 @@ public class Console {
 
     public void chooseGame()
     {
-        boolean play = true;
-        while(play) {
+        while(running) {
             System.out.println("Please choose a game to play!");
             String command = getCommand();
 
@@ -40,6 +40,7 @@ public class Console {
                     int[] warMinMax = getMinMax();
                     Game war = new War(warMinMax[0], warMinMax[1], 10);
                     ((War) war).addPlayers(player);
+                    ((War) war).addNpc();
                     war.startGame();
                     break;
 
@@ -47,6 +48,7 @@ public class Console {
                     int[] studMinMax = getMinMax();
                     Game stud = new Stud(studMinMax[0], studMinMax[1], 10);
                     ((Stud) stud).addPlayers(player);
+                    ((Stud) stud).addNpc();
                     stud.startGame();
                     break;
 
@@ -55,18 +57,16 @@ public class Console {
                     yahtzee.startGame();
                     break;
 
+                case "quit":
+                    System.out.println("Thanks for your money chump!");
+                    running = false;
+                    break;
+
                 default:
                     Printer.noMatchingGameName(gameLib);
                     break;
             }
-            System.out.println("Do you want to play another game? Y or N");
-            Scanner in = new Scanner(System.in);
-            String response = in.next();
-            if (response.equalsIgnoreCase("N")) {
-                play = false;
-            }
         }
-
     }
 
     public int getIntFromUser(){
@@ -104,7 +104,7 @@ public class Console {
 
     public String getCommand() {
         String command = "";
-        String input = scanner.nextLine();
+        String input = scanner.next();
         input = input.toLowerCase().trim();
 
         for(String name : gameLib){

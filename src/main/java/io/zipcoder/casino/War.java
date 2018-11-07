@@ -142,7 +142,6 @@ public class War extends CardGame implements Gamble, Game {
 
     }
 
-
     public void startGame() {
         System.out.println("Welcome to war!");
         super.chooseStatingPlayer();
@@ -177,6 +176,7 @@ public class War extends CardGame implements Gamble, Game {
                 System.out.println("Sorry, I don't understand that command.");
             }
         }
+
     }
 
     public void deal() {
