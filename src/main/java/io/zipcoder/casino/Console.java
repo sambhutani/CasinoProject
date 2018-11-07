@@ -13,7 +13,7 @@ public class Console {
     Console(){
         gameLib.add("yahtzee");
         gameLib.add("war");
-        gameLib.add("three card stud");
+        gameLib.add("stud");
         gameLib.add("quit");
     }
 
@@ -118,6 +118,7 @@ public class Console {
     }
 
     public String continueAskGame(){
+
         String command = "";
 
         System.out.println("Please choose a game to play!");
@@ -133,5 +134,4 @@ public class Console {
         }
         return command;
     }
-
 }
