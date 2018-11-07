@@ -99,7 +99,7 @@ public class Console {
 
     public String getCommand() {
         String command = "";
-        String input = scanner.next();
+        String input = scanner.nextLine();
         input = input.toLowerCase().trim();
 
         for(String name : gameLib){
