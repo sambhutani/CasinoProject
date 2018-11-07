@@ -3,8 +3,7 @@ package io.zipcoder.casino;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Deck {
-    ArrayList<Card> deck;
+public class Deck extends ArrayList<Card>{
 
     /**
      * Deck constructor will create an array of all 52 @Card 's
@@ -15,17 +14,16 @@ public class Deck {
     }
 
     public void createDeck(){
-        this.deck = new ArrayList<>();
 
         for (int i = 0; i < 13; i++){
             Card.CardValue value = Card.CardValue.values()[i];
 
             for (int j = 0; j < 4; j++){
                 Card card = new Card(value, Card.Suit.values()[j]);
-                this.deck.add(card);
+                this.add(card);
             }
         }
-        Collections.shuffle(deck);
+        Collections.shuffle(this);
     }
 
     /**
@@ -35,7 +33,7 @@ public class Deck {
      * @return
      */
     public Card getCard(int index){
-        return this.deck.get(index);
+        return this.get(index);
     }
 
     /**
@@ -43,16 +41,7 @@ public class Deck {
      * @return
      */
     public Card pullCard(){
-        Card tempCard = this.deck.remove(0);
+        Card tempCard = this.remove(0);
         return tempCard;
-    }
-
-    /**
-     * Used to retrieve the array with instantiated deck shuffled
-     * Will RETURN DECK
-     * @return
-     */
-    public ArrayList<Card> getDeck() {
-        return this.deck;
     }
 }
