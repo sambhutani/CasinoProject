@@ -24,34 +24,44 @@ public class Console {
 
     public void chooseGame()
     {
-        System.out.println("Please choose a game to play!");
-        String command = getCommand();
+        boolean play = true;
+        while(play) {
+            System.out.println("Please choose a game to play!");
+            String command = getCommand();
 
-        switch(command){
+            switch (command) {
 
-            case "war":
-                int[] warMinMax = getMinMax();
-                Game war = new War(warMinMax[0], warMinMax[1], 10);
-                ((War) war).addPlayers(player);
-                war.startGame();
-                break;
+                case "war":
+                    int[] warMinMax = getMinMax();
+                    Game war = new War(warMinMax[0], warMinMax[1], 10);
+                    ((War) war).addPlayers(player);
+                    war.startGame();
+                    break;
 
-            case "three card stud":
-                int[] studMinMax = getMinMax();
-                Game stud = new Stud(studMinMax[0], studMinMax[1], 10);
-                ((Stud) stud).addPlayers(player);
-                stud.startGame();
-                break;
+                case "three card stud":
+                    int[] studMinMax = getMinMax();
+                    Game stud = new Stud(studMinMax[0], studMinMax[1], 10);
+                    ((Stud) stud).addPlayers(player);
+                    stud.startGame();
+                    break;
 
-            case "yahtzee":
-                Game yahtzee = new Yahtzee(player);
-                yahtzee.startGame();
-                break;
+                case "yahtzee":
+                    Game yahtzee = new Yahtzee(player);
+                    yahtzee.startGame();
+                    break;
 
-            default:
-                Printer.noMatchingGameName(gameLib);
-                break;
+                default:
+                    Printer.noMatchingGameName(gameLib);
+                    break;
+            }
+            System.out.println("Do you want to play another game? Y or N");
+            Scanner in = new Scanner(System.in);
+            String response = in.next();
+            if (response.equalsIgnoreCase("N")) {
+                play = false;
+            }
         }
+
     }
 
     public int getIntFromUser(){

@@ -3,12 +3,11 @@ package io.zipcoder.casino;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Yahtzee extends DiceGame implements Game, Gamble{
+public class Yahtzee extends DiceGame implements Game, Gamble {
 
     DicePlayer dicePlayer;
     private Scanner scanner = new Scanner(System.in);
     int betAmount = 0;
-    Console console = new Console();
 
     public Yahtzee(Player player) {
         this.dicePlayer = new DicePlayer(player);
@@ -22,6 +21,11 @@ public class Yahtzee extends DiceGame implements Game, Gamble{
         this.betAmount = bid;
     }
 
+
+    @Override
+    public void quit() {
+
+    }
 
     public void startGame() {
         Dice dice1 = new Dice();
@@ -46,12 +50,11 @@ public class Yahtzee extends DiceGame implements Game, Gamble{
         payout();
         dicePlayer.printBalanceAtEnd();
         System.out.println();
-        quit();
     }
 
     public void startRound() {
 
-        for(int i = 0; i < ScoreSheet.getSize(); i++) {
+        for (int i = 0; i < ScoreSheet.getSize(); i++) {
             for (Dice d : dicePlayer.getCup()) {
                 d.roll();
             }
@@ -65,7 +68,7 @@ public class Yahtzee extends DiceGame implements Game, Gamble{
 
     }
 
-    public void roundRoutine(){
+    public void roundRoutine() {
 
         giveOptions();
         giveOptions();
@@ -104,17 +107,17 @@ public class Yahtzee extends DiceGame implements Game, Gamble{
         }
     }
 
-    public void reRoll(String diceToRoll){
+    public void reRoll(String diceToRoll) {
 
         String[] numbersString = diceToRoll.split(" ");
         ArrayList<Integer> numbers = new ArrayList<>();
-        for(String s: numbersString) {
+        for (String s : numbersString) {
             numbers.add(Integer.parseInt(s));
         }
 
-        for(Integer i : numbers) {
-            for(int j = 0; j < 5; j++) {
-                if(i == dicePlayer.getCup()[j].getValue()) {
+        for (Integer i : numbers) {
+            for (int j = 0; j < 5; j++) {
+                if (i == dicePlayer.getCup()[j].getValue()) {
                     dicePlayer.getCup()[j].roll();
                     break;
                 }
@@ -128,7 +131,7 @@ public class Yahtzee extends DiceGame implements Game, Gamble{
         int choice = 13;
         ScoreSheet.ROW row = ScoreSheet.ROW.CHANCE;
 
-        while(validEntry) {
+        while (validEntry) {
             dicePlayer.getScoreSheet().printScoreCard();
             System.out.println();
             System.out.println("Which row would you like to apply your turn to on the scoresheet?.\n" +
@@ -138,32 +141,45 @@ public class Yahtzee extends DiceGame implements Game, Gamble{
             Scanner scanner2 = new Scanner(System.in);
             choice = scanner2.nextInt();
 
-            switch(choice) {
-                case 1: row = ScoreSheet.ROW.ACES;
+            switch (choice) {
+                case 1:
+                    row = ScoreSheet.ROW.ACES;
                     break;
-                case 2: row = ScoreSheet.ROW.TWOS;
+                case 2:
+                    row = ScoreSheet.ROW.TWOS;
                     break;
-                case 3: row = ScoreSheet.ROW.THREES;
+                case 3:
+                    row = ScoreSheet.ROW.THREES;
                     break;
-                case 4: row = ScoreSheet.ROW.FOURS;
+                case 4:
+                    row = ScoreSheet.ROW.FOURS;
                     break;
-                case 5: row = ScoreSheet.ROW.FIVES;
+                case 5:
+                    row = ScoreSheet.ROW.FIVES;
                     break;
-                case 6: row = ScoreSheet.ROW.SIXES;
+                case 6:
+                    row = ScoreSheet.ROW.SIXES;
                     break;
-                case 7: row = ScoreSheet.ROW.THREEOFAKIND;
+                case 7:
+                    row = ScoreSheet.ROW.THREEOFAKIND;
                     break;
-                case 8: row = ScoreSheet.ROW.FOUROFAKIND;
+                case 8:
+                    row = ScoreSheet.ROW.FOUROFAKIND;
                     break;
-                case 9: row = ScoreSheet.ROW.FULLHOUSE;
+                case 9:
+                    row = ScoreSheet.ROW.FULLHOUSE;
                     break;
-                case 10: row = ScoreSheet.ROW.SMALLSTRAIGHT;
+                case 10:
+                    row = ScoreSheet.ROW.SMALLSTRAIGHT;
                     break;
-                case 11: row = ScoreSheet.ROW.LARGESTRAIGHT;
+                case 11:
+                    row = ScoreSheet.ROW.LARGESTRAIGHT;
                     break;
-                case 12: row = ScoreSheet.ROW.YAHTZEE;
+                case 12:
+                    row = ScoreSheet.ROW.YAHTZEE;
                     break;
-                case 13: row = ScoreSheet.ROW.CHANCE;
+                case 13:
+                    row = ScoreSheet.ROW.CHANCE;
                     break;
             }
             if (dicePlayer.getScoreSheet().getScore(row) == null) {
@@ -176,7 +192,7 @@ public class Yahtzee extends DiceGame implements Game, Gamble{
         dicePlayer.getScoreSheet().setRow(row, dicePlayer.getCup());
         System.out.println();
         dicePlayer.getScoreSheet().printScoreCard();
-        }
+    }
 
     @Override
     public void bet(int betAmount) {
@@ -187,7 +203,7 @@ public class Yahtzee extends DiceGame implements Game, Gamble{
     public void payout() {
         int score = dicePlayer.getScoreSheet().getTotalScore();
         int payOut = 0;
-        if(score == 1575) {
+        if (score == 1575) {
             payOut = getBid() * 100;
         } else if (score > 1000) {
             payOut = getBid() * 20;
@@ -206,7 +222,4 @@ public class Yahtzee extends DiceGame implements Game, Gamble{
         System.out.println("You won $" + payOut);
     }
 
-    public void quit() {
-        console.chooseGame();
-    }
 }
