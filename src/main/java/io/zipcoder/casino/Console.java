@@ -8,12 +8,14 @@ public class Console {
     private ArrayList<String> gameLib = new ArrayList<>();
     private Game game = null;
     private Player player;
+    private Player player2;         //need to run createAccount for player two for Stud
     private boolean running = true;
+
 
     Console(){
         gameLib.add("yahtzee");
         gameLib.add("war");
-        gameLib.add("three card stud");
+        gameLib.add("stud");
     }
 
     public void createAccount()
@@ -25,6 +27,20 @@ public class Console {
         int balance = getIntFromUser();
 
         player = new Player(name, balance);
+    }
+
+    /**
+     * Currently required to make Stud a 2 player game, could later refactor to declare 'player' in createAccount method and pass to PlayerArray
+     */
+    public void createAccount2()
+    {
+        System.out.println("Hello, what is your name?");
+        String name = scanner.next();
+
+        System.out.println("How much money are you bringing to the table?");
+        int balance = getIntFromUser();
+
+        player2 = new Player(name, balance);
     }
 
     public void chooseGame()
@@ -42,11 +58,13 @@ public class Console {
                 war.StartGame();
                 break;
 
-            case "three card stud":
+            case "stud":
                 int[] studMinMax = getMinMax();
                 Game stud = new Stud(studMinMax[0], studMinMax[1], 10);
+                System.out.println("Three card stud is a two player game.\nPlayer 2:\n");
+                createAccount2();
                 ((Stud) stud).addPlayers(player);
-                ((Stud) stud).addNpc();
+                ((Stud) stud).addPlayers(player2);
                 stud.StartGame();
                 break;
 
