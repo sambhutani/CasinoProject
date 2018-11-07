@@ -5,7 +5,7 @@ public class Stud extends CardGame implements Gamble, Game {
         super(minBet, maxBet, ante);
     }
 
-    public void Deal() {
+    public void deal() {
 
     }
 
@@ -22,31 +22,28 @@ public class Stud extends CardGame implements Gamble, Game {
      * Below 3 Implemented from Gamble
      * @param betAmount
      */
-    public void Bet(int betAmount) {
+    public void bet(int betAmount) {
 
     }
 
-    public int Payout(int payoutAmount) {
-        return 0;
-    }
-
-    public void Ante(int anteAmount) {
+    public void payout() {
 
     }
+
 
     /**
      * Below 3 Implemented from Game
      */
 
-    public void Quit() {
+    public void quit() {
 
     }
 
-    public void StartGame() {
+    public void startGame() {
 
     }
 
-    public void StartRound() {
+    public void startRound() {
 
     }
 }
