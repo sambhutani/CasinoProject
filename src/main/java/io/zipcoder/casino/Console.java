@@ -1,15 +1,21 @@
 package io.zipcoder.casino;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Console {
     private Scanner scanner = new Scanner(System.in);
-    private String[] gameLib = {"yahtzee", "war", "three card stud"};
+    private ArrayList<String> gameLib = new ArrayList<>();
     private Game game = null;
     private Player player;
     public boolean running = true;
 
-    Console(){}
+    Console(){
+        gameLib.add("yahtzee");
+        gameLib.add("war");
+        gameLib.add("three card stud");
+        gameLib.add("quit");
+    }
 
     public void createAccount()
     {
@@ -34,6 +40,7 @@ public class Console {
                     int[] warMinMax = getMinMax();
                     Game war = new War(warMinMax[0], warMinMax[1], 10);
                     ((War) war).addPlayers(player);
+                    ((War) war).addNpc();
                     war.startGame();
                     break;
 
@@ -41,6 +48,7 @@ public class Console {
                     int[] studMinMax = getMinMax();
                     Game stud = new Stud(studMinMax[0], studMinMax[1], 10);
                     ((Stud) stud).addPlayers(player);
+                    ((Stud) stud).addNpc();
                     stud.startGame();
                     break;
 
@@ -49,13 +57,16 @@ public class Console {
                     yahtzee.startGame();
                     break;
 
+                case "quit":
+                    System.out.println("Thanks for your money chump!");
+                    running = false;
+                    break;
+
                 default:
                     Printer.noMatchingGameName(gameLib);
                     break;
             }
-
         }
-
     }
 
     public int getIntFromUser(){
@@ -105,4 +116,22 @@ public class Console {
         command = command.toLowerCase().trim();
         return command;
     }
+
+    public String continueAskGame(){
+        String command = "";
+
+        System.out.println("Please choose a game to play!");
+        command = getCommand();
+
+        if(gameLib.indexOf(command) == -1)
+        {
+            while(gameLib.indexOf(command) == -1)
+            {
+                Printer.noMatchingGameName(gameLib);
+                command = getCommand();
+            }
+        }
+        return command;
+    }
+
 }
