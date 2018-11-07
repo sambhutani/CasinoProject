@@ -1,8 +1,6 @@
 package io.zipcoder.casino;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Yahtzee extends DiceGame implements Game, Gamble{
@@ -10,6 +8,7 @@ public class Yahtzee extends DiceGame implements Game, Gamble{
     DicePlayer dicePlayer;
     private Scanner scanner = new Scanner(System.in);
     int betAmount = 0;
+    Console console = new Console();
 
     public Yahtzee(Player player) {
         this.dicePlayer = new DicePlayer(player);
@@ -46,7 +45,8 @@ public class Yahtzee extends DiceGame implements Game, Gamble{
         System.out.println("You scored " + dicePlayer.getScoreSheet().getTotalScore() + " points.");
         payout();
         dicePlayer.printBalanceAtEnd();
-        //Return to console.
+        System.out.println();
+        quit();
     }
 
     public void startRound() {
@@ -207,6 +207,6 @@ public class Yahtzee extends DiceGame implements Game, Gamble{
     }
 
     public void quit() {
-        //Return to console
+        console.chooseGame();
     }
 }
