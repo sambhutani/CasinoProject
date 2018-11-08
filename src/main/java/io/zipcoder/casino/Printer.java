@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 public class Printer {
 
+    public static void printMessage(String string) {
+        System.out.println(string);
+    }
+
     public static void noMatchingGameName(ArrayList<String> gameNames){
 
         String games = "";
@@ -44,10 +48,6 @@ public class Printer {
         printMessage("Thanks for your money chump!");
     }
 
-    public static void printMessage(String string) {
-        System.out.println(string);
-    }
-
     public static void pleaseEnterNum(){
         printMessage("Please enter a number");
     }
@@ -57,7 +57,23 @@ public class Printer {
     }
     
     public static void wrongCommand(){
-        printMessage("Sorry, there is no game with that name.")
+        printMessage("Sorry, there is no game with that name.");
+    }
+
+    public static void printWarTurnResult(String name, String cardName, int handSize){
+        printMessage(name + " has played " + cardName + " and has " + handSize + " cards left.");
+    }
+
+    public static void playedFaceDown(String name){
+        printMessage(name + " has played a card face down.");
+    }
+
+    public static void startSlots(){
+        printMessage("You are all set to play a new slot game..zrrr..! \n");
+    }
+
+    public static void payOut(int payout){
+        printMessage("Your payout amount for slot machine is: $" + payout + "\n");
     }
 
 

@@ -13,7 +13,6 @@ public class SlotMachine implements Game, Gamble {
         this.betAmount = betAmount;
     }
 
-    // implemented from gamble
     @Override
     public void bet(int betAmount) {
         this.betAmount= betAmount;
@@ -22,12 +21,8 @@ public class SlotMachine implements Game, Gamble {
 
     @Override
     public void payout(){
-        System.out.println("Your payout amount for slot machine is: $" +payout +"\n");
-
+        Printer.payOut(payout);
     }
-
-
-    // implementd from game
 
     @Override
     public void quit() {
@@ -36,13 +31,13 @@ public class SlotMachine implements Game, Gamble {
 
     @Override
     public void startGame() {
-        System.out.println("You are all set to play a new slot game..zrrr..!"+"\n");
+        Printer.startSlots();
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("Your slot is in progress"+"\n");
+        Printer.printMessage("Your slot is in progress"+"\n");
 
         try {
             Thread.sleep(3000);
@@ -111,8 +106,6 @@ public class SlotMachine implements Game, Gamble {
                 }
             }
             outputword= "[ " + word1+ " ]" + "   " + "[ " + word2 + " ]" + "   "+ "[ " + word3 + " ]" + "\n" ;
-            //System.out.println(outputword);
-
 
             if(((!word1.equals(word2)) )&& ((!word1.equals(word3))) && ((!word2.equals(word3)))){
 
@@ -133,35 +126,18 @@ public class SlotMachine implements Game, Gamble {
                 payout=betAmount*3;
             }
 
-            System.out.println(( outputword + "\n" ));
+            Printer.printMessage(( outputword + "\n" ));
 
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-
-
-        }
-
-
-
-
-
+    }
 
     @Override
     public void startRound() {
 
     }
-
-   /* public  void main(String[] args) {
-
-
-        //System.out.println("Enter the amount of money you wan to enter into the slot machine");
-        //Scanner scanner = new Scanner(System.in);
-
-
-    }*/
 }
 
