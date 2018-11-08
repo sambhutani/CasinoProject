@@ -30,54 +30,26 @@ public class ScoreSheet {
         return totalScore;
     }
 
-    public void printRow(ROW row, String description) {
-        System.out.print(String.format("%-35s",description));
+    public void rowToString(ROW row, String description) {
+        String rowInfo = String.format("%-35s",description));
         if(getScore(row) != null) {
-            System.out.println("** " + getScore(row) + " **");
+            rowInfo += "\n** " + getScore(row) + " **\n";
         } else {
-            System.out.println("** open **");
+            rowInfo += "\n** open **\n";
         }
     }
 
-    public void printScoreCard(){
-        System.out.print(String.format("%-35s","1. Aces: Totals all Ones"));
-        if(getScore(ScoreSheet.ROW.ACES) != null) {
-            System.out.println("** " + getScore(ScoreSheet.ROW.ACES) + " **");
-        } else {
-            System.out.println("** open **");
-        }
-        System.out.print(String.format("%-35s","2. Twos: Totals all Twos"));
-        if(getScore(ScoreSheet.ROW.TWOS) != null) {
-            System.out.println("** " + getScore(ScoreSheet.ROW.TWOS) + " **");
-        } else {
-            System.out.println("** open **");
-        }
-        System.out.print(String.format("%-35s", "3. Threes: Totals all Threes"));
-        if(getScore(ScoreSheet.ROW.THREES) != null) {
-            System.out.println("** " + getScore(ScoreSheet.ROW.THREES) + " **");
-        } else {
-            System.out.println("** open **");
-        }
-        System.out.print(String.format("%-35s", "4. Fours: Totals all Fours"));
-        if(getScore(ScoreSheet.ROW.FOURS) != null) {
-            System.out.println("** " + getScore(ScoreSheet.ROW.FOURS) + " **");
-        } else {
-            System.out.println("** open **");
-        }
-        System.out.print(String.format("%-35s", "5. Fives: Totals all Fives"));
-        if(getScore(ScoreSheet.ROW.FIVES) != null) {
-            System.out.println("** " + getScore(ScoreSheet.ROW.FIVES) + " **");
-        } else {
-            System.out.println("** open **");
-        }
-        System.out.print(String.format("%-35s", "6. Sixes: Totals all Sixes"));
-        if(getScore(ScoreSheet.ROW.SIXES) != null) {
-            System.out.println("** " + getScore(ScoreSheet.ROW.SIXES) + " **");
-        } else {
-            System.out.println("** open **");
-        }
+    public void scoreCardToString(){
+        rowToString(ScoreSheet.ROW.ACES, "1. Aces: Totals all Ones");
+        rowToString(ScoreSheet.ROW.TWOS, "2. Twos: Totals all Twos");
+        rowToString(ScoreSheet.ROW.THREES, "3. Threes: Totals all Threes");
+        rowToString(ScoreSheet.ROW.FOURS, "4. Fours: Totals all Fours");
+        rowToString(ScoreSheet.ROW.FIVES, "5. Fives: Totals all Fives");
+        rowToString(ScoreSheet.ROW.SIXES, "6. Sixes: Totals all Sixes");
+        rowToString(ScoreSheet.ROW.THREEOFAKIND, );
+
         System.out.print(String.format("%-35s", "7. 3 of a Kind"));
-        if(getScore(ScoreSheet.ROW.THREEOFAKIND) != null) {
+        if(getScore() != null) {
             System.out.println("** " + getScore(ScoreSheet.ROW.THREEOFAKIND) + " **");
         } else {
             System.out.println("** open **");
