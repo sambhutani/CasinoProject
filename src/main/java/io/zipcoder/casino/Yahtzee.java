@@ -131,7 +131,7 @@ public class Yahtzee extends DiceGame implements Game, Gamble {
         ScoreSheet.ROW row = ScoreSheet.ROW.CHANCE;
 
         while (validEntry) {
-            dicePlayer.getScoreSheet().printScoreCard();
+            Printer.printMessage(dicePlayer.getScoreSheet().scoreCardToString());
             System.out.println();
             System.out.println("Which row would you like to apply your turn to on the scoresheet?.\n" +
                     "Remember you can only use each row once!");
@@ -190,7 +190,7 @@ public class Yahtzee extends DiceGame implements Game, Gamble {
 
         dicePlayer.getScoreSheet().setRow(row, dicePlayer.getCup());
         System.out.println();
-        dicePlayer.getScoreSheet().printScoreCard();
+        Printer.printMessage(dicePlayer.getScoreSheet().scoreCardToString());
     }
 
     @Override

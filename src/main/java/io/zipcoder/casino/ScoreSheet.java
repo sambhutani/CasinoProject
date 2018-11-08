@@ -21,21 +21,31 @@ public class ScoreSheet {
     public int getTotalScore() {
 
         int totalScore = 0;
-        totalScore = (totalScore + getScore(ScoreSheet.ROW.ACES) + getScore(ScoreSheet.ROW.TWOS) + getScore(ScoreSheet.ROW.THREES) + getScore(ScoreSheet.ROW.FOURS) + getScore(ScoreSheet.ROW.FIVES) + getScore(ScoreSheet.ROW.SIXES));
-        if (totalScore >= 63) {
+        int upperScore = 0;
+        int lowerScore = 0;
+        try {
+            upperScore = getScore(ScoreSheet.ROW.ACES) + getScore(ScoreSheet.ROW.TWOS) + getScore(ScoreSheet.ROW.THREES) + getScore(ScoreSheet.ROW.FOURS) + getScore(ScoreSheet.ROW.FIVES) + getScore(ScoreSheet.ROW.SIXES);
+        } catch (NullPointerException e){
+            upperScore = 0;
+        }
+        try {
+            lowerScore = getScore(ScoreSheet.ROW.THREEOFAKIND) + getScore(ScoreSheet.ROW.FOUROFAKIND) + getScore(ScoreSheet.ROW.FULLHOUSE) + getScore(ScoreSheet.ROW.SMALLSTRAIGHT) + getScore(ScoreSheet.ROW.LARGESTRAIGHT) + getScore(ScoreSheet.ROW.YAHTZEE) + getScore(ScoreSheet.ROW.CHANCE);
+        } catch (NullPointerException e){
+            lowerScore = 0;
+        }
+        if (upperScore >= 63) {
             totalScore += 35;
         }
-        totalScore = (totalScore + getScore(ScoreSheet.ROW.THREEOFAKIND) + getScore(ScoreSheet.ROW.FOUROFAKIND) + getScore(ScoreSheet.ROW.FULLHOUSE) + getScore(ScoreSheet.ROW.SMALLSTRAIGHT) + getScore(ScoreSheet.ROW.LARGESTRAIGHT) + getScore(ScoreSheet.ROW.YAHTZEE) + getScore(ScoreSheet.ROW.CHANCE));
-
+        totalScore = totalScore + upperScore + lowerScore;
         return totalScore;
     }
 
     public String rowToString(ROW row, String description) {
         String rowInfo = String.format("%-35s",description);
         if(getScore(row) != null) {
-            rowInfo += "\n** " + getScore(row) + " **\n";
+            rowInfo += "** " + getScore(row) + " **\n";
         } else {
-            rowInfo += "\n** open **\n";
+            rowInfo += "** open **\n";
         }
         return rowInfo;
     }
