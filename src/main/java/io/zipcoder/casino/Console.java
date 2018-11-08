@@ -18,6 +18,7 @@ public class Console {
         gameLib.add("yahtzee");
         gameLib.add("war");
         gameLib.add("stud");
+        gameLib.add("slot");
         gameLib.add("quit");
 
     }
@@ -40,32 +41,50 @@ public class Console {
 
     public void chooseGame()
     {
+
+
         while(running) {
             System.out.println("Please choose a game to play!");
-            String command = getCommand();
+            getGameIndex();
+
+            int command = getIntFromUser();
 
             switch (command) {
 
-                case "war":
+
+                case 2:
+                    int[] warMinMax = getMinMax();
                     Game war = new War(10);
-                    ((War) war).addPlayers(players.get(0));
+                    ((War) war).addPlayers(player);
                     ((War) war).addNpc();
                     war.startGame();
                     break;
 
-                case "stud":
-                    Game stud = new Stud( 10);
-                    ((Stud) stud).addPlayers(players.get(0));
-                    addStudPlayers(stud);
+
+                case 3:
+                    int[] studMinMax = getMinMax();
+                    Game stud = new Stud(10);
+                    ((Stud) stud).addPlayers(player);
+                    ((Stud) stud).addNpc();
                     stud.startGame();
                     break;
 
-                case "yahtzee":
-                    Game yahtzee = new Yahtzee(players.get(0));
+                case 4:
+                    //call the function to get the bet amount
+                    int slotBet1= getSlotBet();
+                    // call slot machine constructor ie. create object
+                    Game slot= new SlotMachine(slotBet1);
+                    slot.startGame();
+                    // start game
+                    ((SlotMachine) slot).payout();
+                    break;
+
+                case 1:
+                    Game yahtzee = new Yahtzee(player);
                     yahtzee.startGame();
                     break;
 
-                case "quit":
+                case 5:
                     System.out.println("Thanks for your money chump!");
                     running = false;
                     break;
@@ -87,6 +106,38 @@ public class Console {
         }
         return -1;
     }
+
+
+    public int[] getMinMax(){
+        Printer.getBet("minimum bet");
+        int min = 0;
+        while(min <= 0){
+            min = getIntFromUser();
+            if(min < 0){
+                Printer.unacceptableMinBet();
+            }
+        }
+
+        Printer.getBet("maximum bet");
+        int max = 0;
+        while(max < min) {
+            max = getIntFromUser();
+            if(max < min){
+                Printer.unacceptableMaxBet(min);
+            }
+        }
+        int[] minMax = {min, max};
+        return minMax;
+    }
+
+    //function to get the bet amount for slot game
+    public int getSlotBet(){
+        System.out.println("Enter the amount you want to bet on Slot");
+        int slotBet= scanner.nextInt();
+        return slotBet;
+
+    }
+
 
     public String getCommand() {
         String command = "";
@@ -125,6 +176,16 @@ public class Console {
         for(int i = 1; i < numPlayers; i ++) {
             createAccount();
             ((Stud) game).addPlayers(players.get(i));
+        }
+    }
+
+    public void getGameIndex(){
+        int i=1;
+
+        for (String s: gameLib) {
+            System.out.println("Enter "+i+ " for : " + s  );
+            i++;
+
         }
     }
 }
