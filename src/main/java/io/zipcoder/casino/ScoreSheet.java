@@ -2,8 +2,6 @@
 
 package io.zipcoder.casino;
 
-import com.sun.tools.example.debug.expr.ASCII_UCodeESC_CharStream;
-
 import java.util.*;
 
 public class ScoreSheet {

@@ -7,8 +7,11 @@ public class Console {
     private Scanner scanner = new Scanner(System.in);
     private ArrayList<String> gameLib = new ArrayList<>();
     private Game game = null;
+    private Player player;
+    public boolean running = true;
+
     private ArrayList<Player> players = new ArrayList<>();
-    private boolean running = true;
+
 
 
     Console(){

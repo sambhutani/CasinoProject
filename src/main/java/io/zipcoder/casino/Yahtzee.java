@@ -21,13 +21,7 @@ public class Yahtzee extends DiceGame implements Game, Gamble {
         this.betAmount = bid;
     }
 
-
-    @Override
-    public void quit() {
-
-    }
-
-    public void startGame() {
+    public void createGame() {
         Dice dice1 = new Dice();
         Dice dice2 = new Dice();
         Dice dice3 = new Dice();
@@ -39,6 +33,10 @@ public class Yahtzee extends DiceGame implements Game, Gamble {
         dicePlayer.getCup()[2] = dice3;
         dicePlayer.getCup()[3] = dice4;
         dicePlayer.getCup()[4] = dice5;
+    }
+
+    public void startGame() {
+        createGame();
 
         System.out.println("How much would you like to bet on this game?");
         int betAmount = scanner.nextInt();
@@ -50,6 +48,7 @@ public class Yahtzee extends DiceGame implements Game, Gamble {
         payout();
         dicePlayer.printBalanceAtEnd();
         System.out.println();
+
     }
 
     public void startRound() {
@@ -222,4 +221,12 @@ public class Yahtzee extends DiceGame implements Game, Gamble {
         System.out.println("You won $" + payOut);
     }
 
+    @Override
+    public void quit() {
+
+    }
+
+    public DicePlayer getDicePlayer() {
+        return dicePlayer;
+    }
 }
