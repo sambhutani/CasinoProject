@@ -14,6 +14,7 @@ public class Console {
         gameLib.add("yahtzee");
         gameLib.add("war");
         gameLib.add("stud");
+        gameLib.add("slot");
         gameLib.add("quit");
     }
 
@@ -30,13 +31,17 @@ public class Console {
 
     public void chooseGame()
     {
+
+
         while(running) {
             System.out.println("Please choose a game to play!");
-            String command = getCommand();
+            getGameIndex();
+
+            int command = getIntFromUser();
 
             switch (command) {
 
-                case "war":
+                case 2:
                     int[] warMinMax = getMinMax();
                     Game war = new War(warMinMax[0], warMinMax[1], 10);
                     ((War) war).addPlayers(player);
@@ -44,7 +49,7 @@ public class Console {
                     war.startGame();
                     break;
 
-                case "three card stud":
+                case 3:
                     int[] studMinMax = getMinMax();
                     Game stud = new Stud(studMinMax[0], studMinMax[1], 10);
                     ((Stud) stud).addPlayers(player);
@@ -52,12 +57,22 @@ public class Console {
                     stud.startGame();
                     break;
 
-                case "yahtzee":
+                case 4:
+                    //call the function to get the bet amount
+                    int slotBet1= getSlotBet();
+                    // call slot machine constructor ie. create object
+                    Game slot= new SlotMachine(slotBet1);
+                    slot.startGame();
+                    // start game
+                    ((SlotMachine) slot).payout();
+                    break;
+
+                case 1:
                     Game yahtzee = new Yahtzee(player);
                     yahtzee.startGame();
                     break;
 
-                case "quit":
+                case 5:
                     System.out.println("Thanks for your money chump!");
                     running = false;
                     break;
@@ -102,6 +117,15 @@ public class Console {
         return minMax;
     }
 
+    //function to get the bet amount for slot game
+    public int getSlotBet(){
+        System.out.println("Enter the amount you want to bet on Slot");
+        int slotBet= scanner.nextInt();
+        return slotBet;
+
+    }
+
+
     public String getCommand() {
         String command = "";
         String input = scanner.next();
@@ -133,5 +157,15 @@ public class Console {
             }
         }
         return command;
+    }
+
+    public void getGameIndex(){
+        int i=1;
+
+        for (String s: gameLib) {
+            System.out.println("Enter "+i+ " for : " + s  );
+            i++;
+
+        }
     }
 }
