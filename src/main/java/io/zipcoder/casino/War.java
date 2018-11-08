@@ -11,7 +11,7 @@ public class War extends CardGame implements Gamble, Game {
 
     private ArrayList<Card> tableCards = new ArrayList<Card>();
     private ArrayList<CardPlayer> warMembers = new ArrayList<CardPlayer>();
-    private Scanner scanner = new Scanner(System.in);
+    private Console console = new Console();
     private boolean war = false;
 
     War(int ante) {
@@ -142,7 +142,7 @@ public class War extends CardGame implements Gamble, Game {
     }
 
     public void startGame() {
-        System.out.println("Welcome to war!");
+        Printer.welcomeTo("War");
         super.chooseStatingPlayer();
         payAnte();
         deal();
@@ -152,9 +152,8 @@ public class War extends CardGame implements Gamble, Game {
     public void startRound() {
         while(super.getLoser() == null) {
 
-            String input = getCommand();
-
-            if (input.equals("play")) {
+            String input = console.getCMDFromUser("Type 'FLIP' to play the card at the top of your pile");
+            if (input.equals("flip")) {
                 //each player
                 for (CardPlayer player : super.getPlayers()) {
                     //plays a card, then
@@ -176,13 +175,6 @@ public class War extends CardGame implements Gamble, Game {
             }
         }
 
-    }
-
-    public String getCommand(){
-        System.out.println("Type play to play the top card from your pile.");
-        String input = scanner.next();
-        input = input.toLowerCase().trim();
-        return input;
     }
 
     public void deal() {

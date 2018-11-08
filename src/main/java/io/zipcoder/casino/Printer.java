@@ -13,35 +13,35 @@ public class Printer {
         }
         games = games.trim();
 
-        System.out.println("Sorry, there is no game with that name, try one of: " + games);
+        printMessage("Sorry, there is no game with that name, try one of: " + games);
     }
 
     public static void getBet(String phrase){
-        System.out.println("What is the " + phrase + " at the table you're looking for?");
+        printMessage("What is the " + phrase + " at the table you're looking for?");
     }
 
     public static void unacceptableMaxBet(int minBet){
-        System.out.println("Your bet must be above " + minBet);
+        printMessage("Your bet must be above " + minBet);
     }
 
     public static void unacceptableMinBet(){
-        System.out.println("Your bet must be above $0");
+        printMessage("Your bet must be above $0");
     }
 
     public static void studHandsDealt(){
-        System.out.println("Each player Dealt 3 cards");
+        printMessage("Each player Dealt 3 cards");
     }
 
     public static void showCard(Player player, Card card){
-        System.out.println(player.getName() + " shows a " + card.getName());
+        printMessage(player.getName() + " shows a " + card.getName());
     }
 
     public static void pickGameMsg(){
-        System.out.println("Please choose a game to play!");
+        printMessage("Please choose a game to play!");
     }
 
     public static void closeGameMsg(){
-        System.out.println("Thanks for your money chump!");
+        printMessage("Thanks for your money chump!");
     }
 
     public static void printMessage(String string) {
@@ -49,7 +49,15 @@ public class Printer {
     }
 
     public static void pleaseEnterNum(){
-        System.out.println("Please enter a number");
+        printMessage("Please enter a number");
+    }
+    
+    public static void welcomeTo(String gameName){
+        printMessage("Welcome to " + gameName + "!");
+    }
+    
+    public static void wrongCommand(){
+        printMessage("Sorry, there is no game with that name.")
     }
 
 
