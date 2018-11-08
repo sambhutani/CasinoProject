@@ -30,67 +30,33 @@ public class ScoreSheet {
         return totalScore;
     }
 
-    public void rowToString(ROW row, String description) {
-        String rowInfo = String.format("%-35s",description));
+    public String rowToString(ROW row, String description) {
+        String rowInfo = String.format("%-35s",description);
         if(getScore(row) != null) {
             rowInfo += "\n** " + getScore(row) + " **\n";
         } else {
             rowInfo += "\n** open **\n";
         }
+        return rowInfo;
     }
 
-    public void scoreCardToString(){
-        rowToString(ScoreSheet.ROW.ACES, "1. Aces: Totals all Ones");
-        rowToString(ScoreSheet.ROW.TWOS, "2. Twos: Totals all Twos");
-        rowToString(ScoreSheet.ROW.THREES, "3. Threes: Totals all Threes");
-        rowToString(ScoreSheet.ROW.FOURS, "4. Fours: Totals all Fours");
-        rowToString(ScoreSheet.ROW.FIVES, "5. Fives: Totals all Fives");
-        rowToString(ScoreSheet.ROW.SIXES, "6. Sixes: Totals all Sixes");
-        rowToString(ScoreSheet.ROW.THREEOFAKIND, );
+    public String scoreCardToString(){
+        String scoreCard = rowToString(ScoreSheet.ROW.ACES, "1. Aces: Totals all Ones") +
+        rowToString(ScoreSheet.ROW.TWOS, "2. Twos: Totals all Twos") +
+        rowToString(ScoreSheet.ROW.THREES, "3. Threes: Totals all Threes") +
+        rowToString(ScoreSheet.ROW.FOURS, "4. Fours: Totals all Fours") +
+        rowToString(ScoreSheet.ROW.FIVES, "5. Fives: Totals all Fives") +
+        rowToString(ScoreSheet.ROW.SIXES, "6. Sixes: Totals all Sixes") +
+        rowToString(ScoreSheet.ROW.THREEOFAKIND, "7. 3 of a Kind") +
+        rowToString(ScoreSheet.ROW.FOUROFAKIND, "8. 4 of a Kind") +
+        rowToString(ScoreSheet.ROW.FULLHOUSE, "9. Full House") +
+        rowToString(ScoreSheet.ROW.SMALLSTRAIGHT, "10. Small Straight: Sequence of 4") +
+        rowToString(ScoreSheet.ROW.LARGESTRAIGHT, "11. Large Striaght: Sequence of 5") +
+        rowToString(ScoreSheet.ROW.YAHTZEE, "12. Yahtzee: 5 of a Kind") +
+        rowToString(ScoreSheet.ROW.CHANCE,  "13. Chance: Sum of Dice");
 
-        System.out.print(String.format("%-35s", "7. 3 of a Kind"));
-        if(getScore() != null) {
-            System.out.println("** " + getScore(ScoreSheet.ROW.THREEOFAKIND) + " **");
-        } else {
-            System.out.println("** open **");
-        }
-        System.out.print(String.format("%-35s", "8. 4 of a Kind"));
-        if(getScore(ScoreSheet.ROW.FOUROFAKIND) != null) {
-            System.out.println("** " + getScore(ScoreSheet.ROW.FOUROFAKIND) + " **");
-        } else {
-            System.out.println("** open **");
-        }
-        System.out.print(String.format("%-35s", "9. Full House"));
-        if(getScore(ScoreSheet.ROW.FULLHOUSE) != null) {
-            System.out.println("** " + getScore(ScoreSheet.ROW.FULLHOUSE) + " **");
-        } else {
-            System.out.println("** open **");
-        }
-        System.out.print(String.format("%-35s","10. Small Straight: Sequence of 4"));
-        if(getScore(ScoreSheet.ROW.SMALLSTRAIGHT) != null) {
-            System.out.println("** " + getScore(ScoreSheet.ROW.SMALLSTRAIGHT) + " **");
-        } else {
-            System.out.println("** open **");
-        }
-        System.out.print(String.format("%-35s","11. Large Striaght: Sequence of 5"));
-        if(getScore(ScoreSheet.ROW.LARGESTRAIGHT) != null) {
-            System.out.println("** " + getScore(ScoreSheet.ROW.LARGESTRAIGHT) + " **");
-        } else {
-            System.out.println("** open **");
-        }
-        System.out.print(String.format("%-35s","12. Yahtzee: 5 of a Kind "));
-        if(getScore(ScoreSheet.ROW.YAHTZEE) != null) {
-            System.out.println("** " + getScore(ScoreSheet.ROW.YAHTZEE) + " **");
-        } else {
-            System.out.println("** open **");
-        }
-        System.out.print(String.format("%-35s", "13. Chance: Sum of Dice"));
-        if(getScore(ScoreSheet.ROW.CHANCE) != null) {
-            System.out.println("** " + getScore(ScoreSheet.ROW.CHANCE) + " **");
-        } else {
-            System.out.println("** open **");
-        }
-        System.out.println();
+        return scoreCard;
+
     }
 
     public void setRow(ROW row, Dice[] cup){
@@ -121,46 +87,22 @@ public class ScoreSheet {
                     scores.put(ROW.SIXES, scoreNumbers(numbers, 6));
                     break;
                 case THREEOFAKIND:
-                    if (checkOfaKind(numbers, 3)) {
-                        scores.put(ROW.THREEOFAKIND, scoreTotalDice(numbers));
-                    } else {
-                        scores.put(ROW.THREEOFAKIND, 0);
-                    }
+                    scoreRow(checkOfaKind(numbers,3), ROW.THREEOFAKIND, scoreTotalDice(numbers));
                     break;
                 case FOUROFAKIND:
-                    if (checkOfaKind(numbers, 4)) {
-                        scores.put(ROW.FOUROFAKIND, scoreTotalDice(numbers));
-                    } else {
-                        scores.put(ROW.FOUROFAKIND, 0);
-                    }
+                    scoreRow(checkOfaKind(numbers, 4), ROW.FOUROFAKIND, scoreTotalDice(numbers));
                     break;
                 case FULLHOUSE:
-                    if (checkOfaKind(numbers, 5) || checkFullHouse(numbers)) {
-                        scores.put(ROW.FULLHOUSE, 25);
-                    } else {
-                        scores.put(ROW.FULLHOUSE, 0);
-                    }
+                    scoreRow(checkOfaKind(numbers, 5), ROW.FULLHOUSE, 25);
                     break;
                 case SMALLSTRAIGHT:
-                    if (checkSmallStraight(numbers)) {
-                        scores.put(ROW.SMALLSTRAIGHT, 30);
-                    } else {
-                        scores.put(ROW.SMALLSTRAIGHT, 0);
-                    }
+                    scoreRow(checkSmallStraight(numbers), ROW.SMALLSTRAIGHT, 30);
                     break;
                 case LARGESTRAIGHT:
-                    if (checkLargeStraight(numbers)) {
-                        scores.put(ROW.LARGESTRAIGHT, 40);
-                    } else {
-                        scores.put(ROW.LARGESTRAIGHT, 0);
-                    }
+                    scoreRow(checkLargeStraight(numbers), ROW.LARGESTRAIGHT, 40);
                     break;
                 case YAHTZEE:
-                    if (checkOfaKind(numbers, 5)) {
-                        scores.put(ROW.YAHTZEE, 50);
-                    } else {
-                        scores.put(ROW.YAHTZEE, 0);
-                    }
+                    scoreRow(checkOfaKind(numbers, 5), ROW.YAHTZEE, 50);
                     break;
                 case CHANCE:
                     scores.put(ROW.CHANCE, scoreTotalDice(numbers));
@@ -168,14 +110,28 @@ public class ScoreSheet {
             }
         }
 
+        public void scoreRow(boolean check, ROW row, int score) {
+            if (check) {
+                scores.put(row, score);
+            } else {
+                scores.put(row, 0);
+            }
+        }
 
 
     public boolean checkFullHouse(ArrayList<Integer> numbers) {
 
-        boolean check2 = checkOfaKind(numbers, 2);
-        boolean check3 = checkOfaKind(numbers, 3);
+        boolean fullHouse = false;
+        boolean checkYahtzee = checkOfaKind(numbers, 5);
+        if(checkYahtzee) {
+            return true;
+        } else {
+            boolean check2 = checkOfaKind(numbers, 2);
+            boolean check3 = checkOfaKind(numbers, 3);
+            fullHouse = (check2 && check3);
+        }
 
-        return (check2 && check3);
+        return fullHouse;
     }
 
     public boolean checkSmallStraight(ArrayList<Integer> numbers) {
