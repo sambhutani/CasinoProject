@@ -30,8 +30,6 @@ public class YahtzeeTest {
 
         //Then
         Assert.assertEquals(expected, actual);
-
-
     }
 
     @Test
