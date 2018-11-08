@@ -57,7 +57,7 @@ public class Printer {
     }
     
     public static void wrongCommand(){
-        printMessage("Sorry, there is no game with that name.")
+        printMessage("Sorry, there is no game with that name.");
     }
 
 
