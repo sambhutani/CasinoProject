@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Yahtzee extends DiceGame implements Game, Gamble {
 
     DicePlayer dicePlayer;
-    private Scanner scanner = new Scanner(System.in);
+    Console console = new Console();
     int betAmount = 0;
 
     public Yahtzee(Player player) {
@@ -37,9 +37,7 @@ public class Yahtzee extends DiceGame implements Game, Gamble {
 
     public void startGame() {
         createGame();
-
-        System.out.println("How much would you like to bet on this game?");
-        int betAmount = scanner.nextInt();
+        int betAmount = console.getIntFromUser("How much would you like to bet on this game?");
         setBid(betAmount);
         bet(betAmount);
 

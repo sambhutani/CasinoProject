@@ -19,19 +19,22 @@ public class DicePlayer {
         return cup;
     }
 
-    public void printCup() {
+    public String cupToString() {
+
+        String cupString = "";
+
         for(Dice d : cup) {
-            System.out.print(d.getValue() + " ");
+            cupString += (d.getValue() + " ");
         }
-        System.out.println();
+        return cupString;
     }
 
     public Player getPlayer() {
         return player;
     }
 
-    public void printBalanceAtEnd() {
-        System.out.println("Your total balance is now: $" + getPlayer().getCurrentBalance());
+    public String balanceAtEnd() {
+        return "Your total balance is now: $" + getPlayer().getCurrentBalance();
     }
 }
 
