@@ -6,8 +6,8 @@ public class Stud extends CardGame implements Gamble, Game {
     Console console;
     // private int roundCount = 0;
 
-    public Stud(int minBet, int maxBet, int ante) {
-        super(minBet, maxBet, ante);
+    public Stud(int ante) {
+        super(ante);
     }
     
     public void playCard(Player player, Card card) {
@@ -189,11 +189,9 @@ public class Stud extends CardGame implements Gamble, Game {
      * Plays through rounds that includes flipping cards face up and then betting or folding
      */
     public void gameRound1(){
-        for (int j = 0; j < getPlayers().size(); j++) {
-            CardPlayer player = super.getPlayers().get(j);                       //GET a player
-            playCard(player.getPlayer(), player.getHand().get(0));      //SHOW-PRINT players first CARD
-            //roundCount++;
-        }
+
+        playersPlayCard();
+
         for (int x = 0; x < getPlayers().size(); x++) {                          //Betting round or fold
             CardPlayer player = super.getPlayers().get(x);
             int bet;
@@ -209,6 +207,14 @@ public class Stud extends CardGame implements Gamble, Game {
                 bet(bet);
                 System.out.println(player.getPlayer().getName() + " bets: " + bet);
             }
+        }
+    }
+
+    public void playersPlayCard(){
+        for (int j = 0; j < getPlayers().size(); j++) {
+            CardPlayer player = super.getPlayers().get(j);                       //GET a player
+            playCard(player.getPlayer(), player.getHand().get(0));      //SHOW-PRINT players first CARD
+            //roundCount++;
         }
     }
 

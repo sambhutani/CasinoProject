@@ -47,16 +47,14 @@ public class Console {
             switch (command) {
 
                 case "war":
-                    int[] warMinMax = getMinMax();
-                    Game war = new War(warMinMax[0], warMinMax[1], 10);
+                    Game war = new War(10);
                     ((War) war).addPlayers(players.get(0));
                     ((War) war).addNpc();
                     war.startGame();
                     break;
 
                 case "stud":
-                    int[] studMinMax = getMinMax();
-                    Game stud = new Stud(studMinMax[0], studMinMax[1], 10);
+                    Game stud = new Stud( 10);
                     ((Stud) stud).addPlayers(players.get(0));
                     addStudPlayers(stud);
                     stud.startGame();
@@ -90,28 +88,6 @@ public class Console {
         return -1;
     }
 
-    public int[] getMinMax(){
-        Printer.getBet("minimum bet");
-        int min = 0;
-        while(min <= 0){
-            min = getIntFromUser();
-            if(min < 0){
-                Printer.unacceptableMinBet();
-            }
-        }
-
-        Printer.getBet("maximum bet");
-        int max = 0;
-        while(max < min) {
-            max = getIntFromUser();
-            if(max < min){
-                Printer.unacceptableMaxBet(min);
-            }
-        }
-        int[] minMax = {min, max};
-        return minMax;
-    }
-
     public String getCommand() {
         String command = "";
         String input = scanner.next();
@@ -124,24 +100,6 @@ public class Console {
             }
         }
         command = command.toLowerCase().trim();
-        return command;
-    }
-
-    public String continueAskGame(){
-
-        String command = "";
-
-        System.out.println("Please choose a game to play!");
-        command = getCommand();
-
-        if(gameLib.indexOf(command) == -1)
-        {
-            while(gameLib.indexOf(command) == -1)
-            {
-                Printer.noMatchingGameName(gameLib);
-                command = getCommand();
-            }
-        }
         return command;
     }
 
