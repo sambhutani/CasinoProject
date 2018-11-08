@@ -30,7 +30,7 @@ public class ScoreSheet {
         return totalScore;
     }
 
-    public void printRow(Enum row, String description) {
+    public void printRow(ROW row, String description) {
         System.out.print(String.format("%-35s",description));
         if(getScore(row) != null) {
             System.out.println("** " + getScore(row) + " **");
