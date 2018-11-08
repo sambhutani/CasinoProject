@@ -81,6 +81,10 @@ public abstract class CardGame {
         return handSize;
     }
 
+    public void setHandSize(int handSize) {
+        this.handSize = handSize;
+    }
+
     public CardPlayer getPlayersTurn() {
         return playersTurn;
     }
