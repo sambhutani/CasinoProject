@@ -19,9 +19,7 @@ public abstract class CardGame {
     private Deck deck = new Deck();
 
 
-    CardGame(int minBet, int maxBet, int ante){
-        this.minBet = minBet;
-        this.maxBet = maxBet;
+    CardGame(int ante){
         this.ante = ante;
     }
 
@@ -79,6 +77,10 @@ public abstract class CardGame {
 
     public int getHandSize() {
         return handSize;
+    }
+
+    public void setHandSize(int handSize) {
+        this.handSize = handSize;
     }
 
     public CardPlayer getPlayersTurn() {

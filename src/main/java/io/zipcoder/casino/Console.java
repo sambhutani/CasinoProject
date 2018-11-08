@@ -8,7 +8,11 @@ public class Console {
     private ArrayList<String> gameLib = new ArrayList<>();
     private Game game = null;
     private Player player;
-    private boolean running = true;
+    public boolean running = true;
+
+    private ArrayList<Player> players = new ArrayList<>();
+
+
 
     Console(){
         gameLib.add("yahtzee");
@@ -16,6 +20,7 @@ public class Console {
         gameLib.add("stud");
         gameLib.add("slot");
         gameLib.add("quit");
+
     }
 
     public void createAccount()
@@ -26,8 +31,13 @@ public class Console {
         System.out.println("How much money are you bringing to the table?");
         int balance = getIntFromUser();
 
-        player = new Player(name, balance);
+        Player player = new Player(name, balance);
+        players.add(player);
     }
+
+    /**
+     * Currently required to make Stud a 2 player game, could later refactor to declare 'player' in createAccount method and pass to PlayerArray
+     */
 
     public void chooseGame()
     {
@@ -41,17 +51,19 @@ public class Console {
 
             switch (command) {
 
+
                 case 2:
                     int[] warMinMax = getMinMax();
-                    Game war = new War(warMinMax[0], warMinMax[1], 10);
+                    Game war = new War(10);
                     ((War) war).addPlayers(player);
                     ((War) war).addNpc();
                     war.startGame();
                     break;
 
+
                 case 3:
                     int[] studMinMax = getMinMax();
-                    Game stud = new Stud(studMinMax[0], studMinMax[1], 10);
+                    Game stud = new Stud(10);
                     ((Stud) stud).addPlayers(player);
                     ((Stud) stud).addNpc();
                     stud.startGame();
@@ -94,6 +106,7 @@ public class Console {
         }
         return -1;
     }
+
 
     public int[] getMinMax(){
         Printer.getBet("minimum bet");
@@ -141,22 +154,29 @@ public class Console {
         return command;
     }
 
-    public String continueAskGame(){
+    public int getStudPlayers() {
+        int numOfStudPlayers = 0;
 
-        String command = "";
+        while (numOfStudPlayers <= 1) {
 
-        System.out.println("Please choose a game to play!");
-        command = getCommand();
-
-        if(gameLib.indexOf(command) == -1)
-        {
-            while(gameLib.indexOf(command) == -1)
-            {
-                Printer.noMatchingGameName(gameLib);
-                command = getCommand();
+            System.out.println("How many players are there?");
+            try {
+                numOfStudPlayers = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Please enter a number");
             }
         }
-        return command;
+
+        return numOfStudPlayers;
+    }
+
+    public void addStudPlayers(Game game){
+        int numPlayers = getStudPlayers();
+
+        for(int i = 1; i < numPlayers; i ++) {
+            createAccount();
+            ((Stud) game).addPlayers(players.get(i));
+        }
     }
 
     public void getGameIndex(){

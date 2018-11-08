@@ -17,6 +17,10 @@ public class CardPlayer {
         return hand;
     }
 
+    public void setHand(ArrayList<Card> hand) {
+        this.hand = hand;
+    }
+
     public Player getPlayer() {
         return player;
     }
