@@ -2,6 +2,8 @@
 
 package io.zipcoder.casino;
 
+import com.sun.tools.javac.code.Attribute;
+
 import java.util.*;
 
 public class ScoreSheet {
@@ -28,6 +30,14 @@ public class ScoreSheet {
         return totalScore;
     }
 
+    public void printRow(Enum row, String description) {
+        System.out.print(String.format("%-35s",description));
+        if(getScore(row) != null) {
+            System.out.println("** " + getScore(row) + " **");
+        } else {
+            System.out.println("** open **");
+        }
+    }
 
     public void printScoreCard(){
         System.out.print(String.format("%-35s","1. Aces: Totals all Ones"));
@@ -275,6 +285,6 @@ public class ScoreSheet {
     }
 
     public Integer getScore(ROW row) {
-        return this.scores.get(row);
+        return scores.get(row);
     }
 }
