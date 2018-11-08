@@ -21,7 +21,7 @@ public class SlotMachine implements Game, Gamble {
 
     @Override
     public void payout(){
-        Printer.payOut(payout);
+        Printer.printMessage("Your payout amount for slot machine is: $" + payout + "\n");
     }
 
     @Override
@@ -31,7 +31,7 @@ public class SlotMachine implements Game, Gamble {
 
     @Override
     public void startGame() {
-        Printer.startSlots();
+        Printer.printMessage("You are all set to play a new slot game..zrrr..! \n");
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {

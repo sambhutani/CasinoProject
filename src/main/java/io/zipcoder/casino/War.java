@@ -114,8 +114,6 @@ public class War extends CardGame implements Gamble, Game {
         }
     }
 
-    public void quit() { }
-
     public void startGame() {
         Printer.welcomeTo("War");
         super.chooseStatingPlayer();
@@ -157,6 +155,5 @@ public class War extends CardGame implements Gamble, Game {
             }
         }
         Printer.printMessage(super.getPlayersTurn().getPlayer().getName() + "has: " + super.getPlayersTurn().getHand().size() + " cards.");
-
     }
 }
