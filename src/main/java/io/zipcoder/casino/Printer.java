@@ -35,4 +35,22 @@ public class Printer {
     public static void showCard(Player player, Card card){
         System.out.println(player.getName() + " shows a " + card.getName());
     }
+
+    public static void pickGameMsg(){
+        System.out.println("Please choose a game to play!");
+    }
+
+    public static void closeGameMsg(){
+        System.out.println("Thanks for your money chump!");
+    }
+
+    public static void printMessage(String string) {
+        System.out.println(string);
+    }
+
+    public static void pleaseEnterNum(){
+        System.out.println("Please enter a number");
+    }
+
+
 }
