@@ -1,7 +1,6 @@
 package io.zipcoder.casino;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Yahtzee extends DiceGame implements Game, Gamble {
 
@@ -46,7 +45,8 @@ public class Yahtzee extends DiceGame implements Game, Gamble {
                 int rollChoice = console.getIntFromUser("Would you like to:\n1. Roll all dice again.\n2. Roll some dice again.\n3. Stop rolling and score.\nNumber of Selection: ");
                 String diceToRoll = "";
                 if(rollChoice == 2) {
-                    diceToRoll = console.getLineFromUser("Which numbers would you like to reroll? List the numbers separated by spaces.");
+                    Console console2 = new Console();
+                    diceToRoll = console2.getLineFromUser("Which numbers would you like to reroll? List the numbers separated by spaces.");
                 }
                 rollOptions(rollChoice, diceToRoll); }
 
