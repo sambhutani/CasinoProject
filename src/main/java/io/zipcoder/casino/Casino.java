@@ -2,7 +2,6 @@ package io.zipcoder.casino;
 
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 
 public class Casino {
     public boolean running = true;

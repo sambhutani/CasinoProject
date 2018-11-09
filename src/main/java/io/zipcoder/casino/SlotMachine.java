@@ -3,7 +3,7 @@ package io.zipcoder.casino;
 import java.util.Random;
 
 public class SlotMachine implements Game, Gamble {
-    private int betAmount;
+    protected int betAmount;
     private int payoutAmt=0;
     String word="";
     String outputword="";
@@ -19,6 +19,7 @@ public class SlotMachine implements Game, Gamble {
 
     @Override
     public void bet(int betAmount) {
+
         this.betAmount= betAmount;
     }
 
@@ -47,6 +48,11 @@ public class SlotMachine implements Game, Gamble {
 
         Random rand = new Random();
 
+        generateWords(rand);
+
+    }
+
+    protected void generateWords(Random rand) {
         for (int i = 1; i <= 3; i++) {
             int randnum = rand.nextInt(6);
 
@@ -79,7 +85,6 @@ public class SlotMachine implements Game, Gamble {
                 word3 = word;
             }
         }
-
     }
 
     public void slotResult()
@@ -117,9 +122,11 @@ public class SlotMachine implements Game, Gamble {
 
     }
     public int getPayoutAmt() {
+
         return payoutAmt;
     }
     public void setWord1(String word1) {
+
         this.word1 = word1;
     }
 
