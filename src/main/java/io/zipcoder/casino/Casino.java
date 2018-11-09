@@ -67,19 +67,25 @@ public class Casino {
 
                 case 4:
                     int slotBet1= console.getIntFromUser("Enter the amount you want to bet on Slot");
+                    if ((slotBet1 < 0) || (slotBet1 >100) )
+                    {
+                        Printer.printMessage("Invalid bet amount entered, min bet for slot is $1 and max $100 ");
+                        break;
+                    }
                     Game slot= new SlotMachine(slotBet1);
-                    slot.startGame();
                     game = slot;
+                    slot.startGame();
+                    ((SlotMachine) slot).slotResult();
                     ((SlotMachine) slot).payout();
                     break;
 
                 case 1:
                     Game yahtzee = new Yahtzee(player);
+                    game = yahtzee;
                     ((Yahtzee) yahtzee).startGame();
                     int betAmount = console.getIntFromUser("How much would you like to bet on this game?");
                     ((Yahtzee) yahtzee).setBid(betAmount);
                     ((Yahtzee) yahtzee).bet(betAmount);
-                    game = yahtzee;
                     yahtzee.startRound();
                     Printer.printMessage("You scored " + ((Yahtzee) yahtzee).getDicePlayer().getScoreSheet().getTotalScore() + " points.");
                     ((Yahtzee) yahtzee).payout();
@@ -131,5 +137,8 @@ public class Casino {
 
     public Game getGame() {
         return game;
+    }
+    public boolean isRunning() {
+        return running;
     }
 }

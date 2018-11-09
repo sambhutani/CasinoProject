@@ -1,21 +1,41 @@
 package io.zipcoder.casino;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 public class CardTest {
 
     @Test
-    public void createCard(){
+    public void testCreateCard(){
         Card card = new Card(Card.CardValue.TWO, Card.Suit.CLUBS);
-        System.out.println(card.getName());
+        String expected = "TWO of CLUBS";
+        String actual = card.getName();
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
-    public void createCard2(){
-        Card card = new Card(Card.CardValue.TWO, Card.Suit.CLUBS);
-        Card card1 = new Card(Card.CardValue.QUEEN, Card.Suit.HEARTS);
-        System.out.println(card.getName());
-        System.out.println(card1.getName());
+    public void testGetSuit(){
+        Card card = new Card(Card.CardValue.THREE, Card.Suit.DIAMONDS);
+        Card.Suit expected = Card.Suit.DIAMONDS;
+        Card.Suit actual = card.getSuit();
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testGetCardValue(){
+        Card card = new Card(Card.CardValue.ACE, Card.Suit.HEARTS);
+        int expected = 14;
+        int actual = card.getCardValue();
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testVisibility(){
+        Card card = new Card(Card.CardValue.KING, Card.Suit.SPADES);
+        boolean before = card.isVisible();
+        card.setVisibility(true);
+        boolean after = card.isVisible();
+        Assert.assertNotEquals(before, after);
     }
 
 }
