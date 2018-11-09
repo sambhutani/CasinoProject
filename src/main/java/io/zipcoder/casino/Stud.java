@@ -1,6 +1,7 @@
 package io.zipcoder.casino;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Stud extends CardGame implements Game {
     Console console = new Console();
@@ -17,11 +18,9 @@ public class Stud extends CardGame implements Game {
         Printer.printMessage(player.getName() + " shows a " + card.getName());         //PRINT card name to CONSOLE
     }
 
-
     public boolean getIsDealt(){
         return isDealt;
     }
-
 
     /**
      * Determine what player wins by looping through player array and then
@@ -138,15 +137,17 @@ public class Stud extends CardGame implements Game {
     public void payAnte(ArrayList<CardPlayer> players) {
         for(int i = 0; i < super.getPlayers().size(); i ++)
         {
-            players.get(i).getPlayer().changeBalance(-super.getAnte());
+            //players.get(i).getPlayer().changeBalance(-super.getAnte());
+            CardPlayer player = super.getPlayers().get(i);
+            player.getPlayer().changeBalance(-super.getAnte());
         }
     }
 
     public void startGame() {
-        setHandSize(3);             //SET Hand Size for game(3)
-        payAnte(this.getPlayers());                  //PAY ante (all players)
-        deal(this.getPlayers());                     //DEALS cards/ hands to each player
-        startRound();               //METHOD called
+        setHandSize(3);                 //SET Hand Size for game(3)
+        payAnte(this.getPlayers());     //PAY ante (all players)
+        deal(this.getPlayers());        //DEALS cards/ hands to each player
+        startRound();                   //METHOD called
 
     }
 
@@ -179,9 +180,9 @@ public class Stud extends CardGame implements Game {
      * Deal each player(and dealer) 3 face down cards in turn
      */
     public void deal(ArrayList<CardPlayer> players) {
-        for(int i = 0; i < getHandSize(); i ++){                        //OUTER loop - run 3 times as there are 3 cards per hand
-            for (int j = 0; j < players.size(); j++) {             //INNER loop through each player
-                players.get(j).getHand().add(getDeck().pullCard());                                 //ADD card to player hand
+        for(int i = 0; i < getHandSize(); i ++){
+            for (int j = 0; j < players.size(); j++) {
+                players.get(j).getHand().add(getDeck().pullCard());
             }
         }
         isDealt = true;
@@ -202,7 +203,8 @@ public class Stud extends CardGame implements Game {
         return isCardFlipped;
     }
 
-    public void quit() {}
-    // public void payout(){ }
+    public void setScanner(Scanner scanner){
+        this.console.setScanner(scanner);
+    }
 }
 

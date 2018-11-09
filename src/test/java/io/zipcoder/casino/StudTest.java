@@ -28,6 +28,7 @@ public class StudTest {
         cardsTest1.add(cardSix); cardsTest1.add(cardFive); cardsTest1.add(cardFour);
         this.cardPlayer1.setHand(cardsTest1);
 
+
         ArrayList<Card> cardsTest2 = new ArrayList<>();
         Player player2 = new Player("Player2", 10);
         this.cardPlayer2 = new CardPlayer(player2);
@@ -39,6 +40,8 @@ public class StudTest {
 
         players.add(this.cardPlayer1);
         players.add(this.cardPlayer2);
+
+        stud.addPlayers(player1, player2);
 
     }
 
@@ -237,19 +240,15 @@ public class StudTest {
         boolean expected = true;
         //THEN
         boolean actual = stud.getIsDealt();
-
         Assert.assertEquals(expected, actual);
     }
 
     @Test //Either payAnte or Test is broken, Ante is not deducted. Test set to pass
     public void payAnteTest(){
-        stud.payAnte(players);
-        //WHEN @Before
-        int expected = 10;
-        //THEN
-        int actual = players.get(0).getPlayer().getCurrentBalance();
-
-        Assert.assertEquals(expected, actual);
+       stud.payAnte(stud.getPlayers());
+       int expect = 0;
+       int actual = stud.getPlayers().get(0).getPlayer().getCurrentBalance();
+       Assert.assertEquals(expect, actual);
     }
 
     @Test
@@ -273,6 +272,28 @@ public class StudTest {
 
         Assert.assertEquals(expected, actual);
     }
+
+//    @Test
+//    public void testStartRound(){
+//
+//        String input = "flip \n";
+//        stud.deal(players);
+//        System.out.println(players.get(0).getHand().size());
+//
+//        //System.out.println(cardPlayer1.getHand().size());
+//
+//        stud.setScanner(new Scanner(new ByteArrayInputStream(input.getBytes())));
+//        try {
+//            stud.startRound();
+//        } catch (NoSuchElementException e) {
+//
+//        }
+//
+//
+//
+//
+//        //Assert.assertTrue(war.getPlayersTurn() instanceof CardPlayer);
+//    }
 }
 /*
     CODE FOR TRASH PANDAS

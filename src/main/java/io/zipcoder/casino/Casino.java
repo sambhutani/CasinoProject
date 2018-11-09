@@ -71,7 +71,7 @@ public class Casino {
                         Printer.printMessage("Invalid bet amount entered, min bet for slot is $1 and max $100 ");
                         break;
                     }
-                    Game slot= new SlotMachine(slotBet1);
+                    Game slot= new SlotMachine(slotBet1, player);
                     game = slot;
                     slot.startGame();
                     ((SlotMachine) slot).slotResult();
