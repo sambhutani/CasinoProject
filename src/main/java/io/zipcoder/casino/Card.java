@@ -14,20 +14,13 @@ public class Card {
         this.name = cardValue + " of " + suit;
     }
 
+
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public boolean isVisible() {
         return isVisible;
-    }
-
-    public void setVisible(boolean visible) {
-        isVisible = visible;
     }
 
     public void setVisibility(boolean visibility){
@@ -39,19 +32,9 @@ public class Card {
         return suit;
     }
 
-    public void setSuit(Suit suit)
-    {
-        this.suit = suit;
-    }
-
     public int getCardValue()
     {
         return cardValue.getCardValue();
-    }
-
-    public void setCardValue(CardValue cardValue)
-    {
-        this.cardValue = cardValue;
     }
 
     public enum CardValue
@@ -94,11 +77,5 @@ public class Card {
         Suit (String suitValue)
         {
             this.suitValue = suitValue;
-        }
-
-        public String getSuitValue(){
-            return suitValue;
-        }
-
-    }
+        }}
 }
