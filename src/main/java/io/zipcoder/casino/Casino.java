@@ -75,11 +75,11 @@ public class Casino {
 
                 case 1:
                     Game yahtzee = new Yahtzee(player);
+                    game = yahtzee;
                     ((Yahtzee) yahtzee).startGame();
                     int betAmount = console.getIntFromUser("How much would you like to bet on this game?");
                     ((Yahtzee) yahtzee).setBid(betAmount);
                     ((Yahtzee) yahtzee).bet(betAmount);
-                    game = yahtzee;
                     yahtzee.startRound();
                     Printer.printMessage("You scored " + ((Yahtzee) yahtzee).getDicePlayer().getScoreSheet().getTotalScore() + " points.");
                     ((Yahtzee) yahtzee).payout();
@@ -131,5 +131,8 @@ public class Casino {
 
     public Game getGame() {
         return game;
+    }
+    public boolean isRunning() {
+        return running;
     }
 }
