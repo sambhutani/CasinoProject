@@ -194,7 +194,6 @@ public class Yahtzee extends DiceGame implements Game, Gamble {
         Printer.printMessage("You won $" + payOut);
     }
 
-
     public DicePlayer getDicePlayer() {
         return dicePlayer;
     }
