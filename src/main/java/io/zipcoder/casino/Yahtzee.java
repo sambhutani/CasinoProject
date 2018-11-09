@@ -43,22 +43,26 @@ public class Yahtzee extends DiceGame implements Game, Gamble {
         for (int i = 0; i < ScoreSheet.getSize(); i++) {
             rollAll();
             for(int j = 0; j < 2; j++) {
-                int choice = console.getIntFromUser("Would you like to:\n1. Roll all dice again.\n2. Roll some dice again.\n3. Stop rolling and score.\nNumber of Selection: ");
-                rollOptions(choice); }
+                int rollChoice = console.getIntFromUser("Would you like to:\n1. Roll all dice again.\n2. Roll some dice again.\n3. Stop rolling and score.\nNumber of Selection: ");
+                String diceToRoll = "";
+                if(rollChoice == 2) {
+                    diceToRoll = console.getLineFromUser("Which numbers would you like to reroll? List the numbers separated by spaces.");
+                }
+                rollOptions(rollChoice, diceToRoll); }
 
             boolean validEntry = false;
             ScoreSheet.ROW row = ScoreSheet.ROW.CHANCE;
             while (!validEntry) {
                 Printer.printMessage(dicePlayer.getScoreSheet().scoreCardToString());
 
-                int choice = console.getIntFromUser("Which row would you like to apply your turn to on the scoresheet?.\n" +
+                int rowChoice = console.getIntFromUser("Which row would you like to apply your turn to on the scoresheet?.\n" +
                         "Remember you can only use each row once!");
-                row = selectingRow(choice);
+
+                row = selectingRow(rowChoice);
                 validEntry = checkEmptyRow(row);
             }
             dicePlayer.getScoreSheet().setRow(row, dicePlayer.getCup());
             Printer.printMessage("\n" + dicePlayer.getScoreSheet().scoreCardToString());
-
         }
 
     }
@@ -71,7 +75,7 @@ public class Yahtzee extends DiceGame implements Game, Gamble {
     }
 
 
-    public void rollOptions(int choice) {
+    public void rollOptions(int choice, String diceToRoll) {
 
         switch (choice) {
             case 1:
@@ -79,7 +83,6 @@ public class Yahtzee extends DiceGame implements Game, Gamble {
                 break;
 
             case 2:
-                String diceToRoll = console.getLineFromUser("Which numbers would you like to reroll? List the numbers separated by spaces.");
                 reRoll(diceToRoll);
                 break;
 
@@ -180,14 +183,8 @@ public class Yahtzee extends DiceGame implements Game, Gamble {
         int payOut = 0;
         if (score == 1575) {
             payOut = getBid() * 100;
-        } else if (score > 1000) {
-            payOut = getBid() * 20;
         } else if (score > 500) {
             payOut = getBid() * 10;
-        } else if (score > 400) {
-            payOut = getBid() * 5;
-        } else if (score > 300) {
-            payOut = getBid() * 3;
         } else if (score > 200) {
             payOut = getBid() * 2;
         } else {
@@ -197,10 +194,6 @@ public class Yahtzee extends DiceGame implements Game, Gamble {
         Printer.printMessage("You won $" + payOut);
     }
 
-    @Override
-    public void quit() {
-
-    }
 
     public DicePlayer getDicePlayer() {
         return dicePlayer;

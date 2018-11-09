@@ -137,9 +137,6 @@ public class War extends CardGame implements Gamble, Game {
      * Below 3 Implemented from Game
      */
 
-    public void quit() {
-
-    }
 
     public void startGame() {
         System.out.println("Welcome to war!");

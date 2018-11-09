@@ -29,10 +29,6 @@ public class SlotMachine implements Game, Gamble {
 
     // implementd from game
 
-    @Override
-    public void quit() {
-
-    }
 
     @Override
     public void startGame() {
