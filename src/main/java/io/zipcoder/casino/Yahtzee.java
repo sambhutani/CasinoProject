@@ -8,9 +8,11 @@ public class Yahtzee extends DiceGame implements Game, Gamble {
     DicePlayer dicePlayer;
     Console console = new Console();
     int betAmount = 0;
+    int totalScore = 0;
 
     public Yahtzee(Player player) {
         this.dicePlayer = new DicePlayer(player);
+        this.totalScore = this.dicePlayer.getScoreSheet().getTotalScore();
     }
 
     public int getBid() {
@@ -21,7 +23,7 @@ public class Yahtzee extends DiceGame implements Game, Gamble {
         this.betAmount = bid;
     }
 
-    public void createGame() {
+    public void startGame() {
         Dice dice1 = new Dice();
         Dice dice2 = new Dice();
         Dice dice3 = new Dice();
@@ -33,70 +35,52 @@ public class Yahtzee extends DiceGame implements Game, Gamble {
         dicePlayer.getCup()[2] = dice3;
         dicePlayer.getCup()[3] = dice4;
         dicePlayer.getCup()[4] = dice5;
-    }
-
-    public void startGame() {
-        createGame();
-        int betAmount = console.getIntFromUser("How much would you like to bet on this game?");
-        setBid(betAmount);
-        bet(betAmount);
-
-        startRound();
-        System.out.println("You scored " + dicePlayer.getScoreSheet().getTotalScore() + " points.");
-        payout();
-        dicePlayer.printBalanceAtEnd();
-        System.out.println();
 
     }
 
+    @Override
     public void startRound() {
-
         for (int i = 0; i < ScoreSheet.getSize(); i++) {
-            for (Dice d : dicePlayer.getCup()) {
-                d.roll();
-            }
-            System.out.println("\nYou rolled:");
-            dicePlayer.printCup();
-            System.out.println();
+            rollAll();
+            for(int j = 0; j < 2; j++) {
+                int choice = console.getIntFromUser("Would you like to:\n1. Roll all dice again.\n2. Roll some dice again.\n3. Stop rolling and score.\nNumber of Selection: ");
+                rollOptions(choice); }
 
-            roundRoutine();
-            recordingScore();
+            boolean validEntry = false;
+            ScoreSheet.ROW row = ScoreSheet.ROW.CHANCE;
+            while (!validEntry) {
+                Printer.printMessage(dicePlayer.getScoreSheet().scoreCardToString());
+
+                int choice = console.getIntFromUser("Which row would you like to apply your turn to on the scoresheet?.\n" +
+                        "Remember you can only use each row once!");
+                row = selectingRow(choice);
+                validEntry = checkEmptyRow(row);
+            }
+            dicePlayer.getScoreSheet().setRow(row, dicePlayer.getCup());
+            Printer.printMessage("\n" + dicePlayer.getScoreSheet().scoreCardToString());
+
         }
 
     }
 
-    public void roundRoutine() {
-
-        giveOptions();
-        giveOptions();
-
+    public void rollAll() {
+        for (Dice d : dicePlayer.getCup()) {
+            d.roll();
+        }
+        Printer.printMessage("\nYou rolled:\n" + dicePlayer.cupToString() + "\n");
     }
 
-    public void giveOptions() {
-        int choice = 0;
-        System.out.print("Would you like to:\n1. Roll all dice again.\n2. Roll some dice again.\n3. Stop rolling and score.\nNumber of Selection: ");
 
-        Scanner in = new Scanner(System.in);
-        choice = in.nextInt();
+    public void rollOptions(int choice) {
 
         switch (choice) {
             case 1:
-                for (Dice d : dicePlayer.getCup()) {
-                    d.roll();
-                }
-                System.out.println("\nYou rolled:");
-                dicePlayer.printCup();
-                System.out.println();
+                rollAll();
                 break;
 
             case 2:
-                System.out.println("Which numbers would you like to reroll? List the numbers separated by spaces.");
-                Scanner in2 = new Scanner(System.in);
-                String diceToRoll = in2.nextLine();
+                String diceToRoll = console.getLineFromUser("Which numbers would you like to reroll? List the numbers separated by spaces.");
                 reRoll(diceToRoll);
-                System.out.println("\nYou rolled:");
-                dicePlayer.printCup();
-                System.out.println();
                 break;
 
             case 3:
@@ -120,23 +104,13 @@ public class Yahtzee extends DiceGame implements Game, Gamble {
                 }
             }
         }
+        Printer.printMessage("\nYou rolled:\n" + dicePlayer.cupToString() + "\n");
+
     }
 
-    public void recordingScore() {
+    public ScoreSheet.ROW selectingRow(int choice) {
 
-        boolean validEntry = true;
-        int choice = 13;
         ScoreSheet.ROW row = ScoreSheet.ROW.CHANCE;
-
-        while (validEntry) {
-            Printer.printMessage(dicePlayer.getScoreSheet().scoreCardToString());
-            System.out.println();
-            System.out.println("Which row would you like to apply your turn to on the scoresheet?.\n" +
-                    "Remember you can only use each row once!");
-            System.out.print("Row:");
-
-            Scanner scanner2 = new Scanner(System.in);
-            choice = scanner2.nextInt();
 
             switch (choice) {
                 case 1:
@@ -179,17 +153,21 @@ public class Yahtzee extends DiceGame implements Game, Gamble {
                     row = ScoreSheet.ROW.CHANCE;
                     break;
             }
+
+            return row;
+
+        }
+
+        public boolean checkEmptyRow(ScoreSheet.ROW row) {
             if (dicePlayer.getScoreSheet().getScore(row) == null) {
-                validEntry = false;
+                return true;
             } else {
-                System.out.println("Error, you have already filled that row");
+                Printer.printMessage("Error, you have already filled that row");
+                return false;
             }
         }
 
-        dicePlayer.getScoreSheet().setRow(row, dicePlayer.getCup());
-        System.out.println();
-        Printer.printMessage(dicePlayer.getScoreSheet().scoreCardToString());
-    }
+
 
     @Override
     public void bet(int betAmount) {
@@ -198,7 +176,7 @@ public class Yahtzee extends DiceGame implements Game, Gamble {
 
     @Override
     public void payout() {
-        int score = dicePlayer.getScoreSheet().getTotalScore();
+        int score = getTotalScore();
         int payOut = 0;
         if (score == 1575) {
             payOut = getBid() * 100;
@@ -216,7 +194,7 @@ public class Yahtzee extends DiceGame implements Game, Gamble {
             payOut = 0;
         }
         dicePlayer.getPlayer().changeBalance(payOut);
-        System.out.println("You won $" + payOut);
+        Printer.printMessage("You won $" + payOut);
     }
 
     @Override
@@ -226,5 +204,9 @@ public class Yahtzee extends DiceGame implements Game, Gamble {
 
     public DicePlayer getDicePlayer() {
         return dicePlayer;
+    }
+
+    public int getTotalScore() {
+        return totalScore;
     }
 }
