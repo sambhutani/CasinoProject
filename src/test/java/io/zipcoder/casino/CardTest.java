@@ -2,6 +2,8 @@ package io.zipcoder.casino;
 
 import org.junit.Test;
 
+import javax.smartcardio.Card;
+
 public class CardTest {
 
     @Test
