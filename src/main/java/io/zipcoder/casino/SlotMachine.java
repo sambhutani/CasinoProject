@@ -16,7 +16,6 @@ public class SlotMachine implements Game, Gamble {
     @Override
     public void bet(int betAmount) {
         this.betAmount= betAmount;
-
     }
 
     @Override
