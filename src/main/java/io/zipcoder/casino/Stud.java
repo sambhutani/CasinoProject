@@ -11,16 +11,17 @@ public class Stud extends CardGame implements Game {
     public Stud(int ante) {
         super(ante);
     }
+    
+    public void playCard(Player player, Card card) {
+        card.setVisibility(true);               //CARD isVISIBLE
+        Printer.printMessage(player.getName() + " shows a " + card.getName());         //PRINT card name to CONSOLE
+    }
 
 
     public boolean getIsDealt(){
         return isDealt;
     }
 
-    public void playCard(Player player, Card card) {
-        card.setVisibility(true);               //CARD isVISIBLE
-        Printer.showCard(player, card);         //PRINT card name to CONSOLE
-    }
 
     /**
      * Determine what player wins by looping through player array and then

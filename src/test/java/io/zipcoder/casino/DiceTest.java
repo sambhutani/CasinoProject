@@ -24,10 +24,4 @@ public class DiceTest {
 
         Assert.assertEquals(expected,x);
     }
-
-    @Test
-    public void test()
-    {
-
-    }
 }

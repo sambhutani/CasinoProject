@@ -33,14 +33,6 @@ public abstract class CardGame {
 
     }
 
-    public void faceDown(Card card){
-        card.setVisibility(false);
-    }
-
-    public void faceUp(Card card){
-        card.setVisibility(true);
-    }
-
     public Deck getDeck() {
         return deck;
     }
@@ -56,9 +48,6 @@ public abstract class CardGame {
         }
     }
 
-    public void setDeck(Deck deck) {
-        this.deck = deck;
-    }
 
     public int getAnte(){
         return ante;
@@ -123,10 +112,6 @@ public abstract class CardGame {
                 //System.out.println("it is now " + playersTurn.getPlayer().getName() + "'s turn");
             }
         }
-    }
-
-    public void printTurn(){
-        System.out.println("it is now " + playersTurn.getPlayer().getName() + "'s turn");
     }
 
     public Player getLoser() {
