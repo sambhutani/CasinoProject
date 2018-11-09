@@ -47,6 +47,7 @@ public abstract class CardGame {
         }
     }
 
+
     public int getAnte(){
         return ante;
     }

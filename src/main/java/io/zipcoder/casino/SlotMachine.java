@@ -25,11 +25,6 @@ public class SlotMachine implements Game, Gamble {
     }
 
     @Override
-    public void quit() {
-
-    }
-
-    @Override
     public void startGame() {
         Printer.printMessage("You are all set to play a new slot game..zrrr..! \n");
         try {
