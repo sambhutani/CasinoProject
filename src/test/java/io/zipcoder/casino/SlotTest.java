@@ -4,6 +4,10 @@ package io.zipcoder.casino;
 import org.junit.Test;
 import org.junit.Assert;
 
+import java.io.ByteArrayInputStream;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
+
 
 public class SlotTest {
 

@@ -49,7 +49,7 @@ public class WarTest {
     public void warDealTest(){
         War war = new War(10);
         war.addPlayers(new Player("Jon", 100));
-        war.chooseStatingPlayer();
+        war.chooseStartingPlayer();
         war.deal();
 
         Assert.assertTrue(war.getPlayers().get(0).getHand().size() == 52);
@@ -60,7 +60,7 @@ public class WarTest {
         War war = new War(10);
         war.addPlayers(new Player("Jon", 100), new Player("Jose", 200));
 
-        war.chooseStatingPlayer();
+        war.chooseStartingPlayer();
         war.deal();
         war.eachPlayerPlayCard();
 
@@ -78,7 +78,7 @@ public class WarTest {
         Player player1 = new Player("Jose", 100);
         Player player2 = new Player("Lauren", 200);
         war.addPlayers(player1, player2);
-        war.chooseStatingPlayer();
+        war.chooseStartingPlayer();
         war.deal();
 
         String input = "flip \n";
@@ -101,7 +101,7 @@ public class WarTest {
         Player player1 = new Player("Jose", 100);
         Player player2 = new Player("Lauren", 200);
         war.addPlayers(player1, player2);
-        war.chooseStatingPlayer();
+        war.chooseStartingPlayer();
         CardPlayer startPlayer = war.getPlayersTurn();
         war.deal();
 
@@ -125,7 +125,7 @@ public class WarTest {
         Player player1 = new Player("Jose", 100);
         Player player2 = new Player("Lauren", 200);
         war.addPlayers(player1, player2);
-        war.chooseStatingPlayer();
+        war.chooseStartingPlayer();
         CardPlayer startPlayer = war.getPlayersTurn();
 
         ArrayList<Card> hand1 = new ArrayList<>();

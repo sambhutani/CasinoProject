@@ -1,6 +1,7 @@
 package io.zipcoder.casino;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Stud extends CardGame implements Game {
     Console console = new Console();
@@ -136,7 +137,9 @@ public class Stud extends CardGame implements Game {
     public void payAnte(ArrayList<CardPlayer> players) {
         for(int i = 0; i < super.getPlayers().size(); i ++)
         {
-            players.get(i).getPlayer().changeBalance(-super.getAnte());
+            //players.get(i).getPlayer().changeBalance(-super.getAnte());
+            CardPlayer player = super.getPlayers().get(i);
+            player.getPlayer().changeBalance(-super.getAnte());
         }
     }
 
@@ -200,7 +203,8 @@ public class Stud extends CardGame implements Game {
         return isCardFlipped;
     }
 
-    public void quit() {}
-    // public void payout(){ }
+    public void setScanner(Scanner scanner){
+        this.console.setScanner(scanner);
+    }
 }
 
