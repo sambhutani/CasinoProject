@@ -65,8 +65,14 @@ public class Casino {
 
                 case 4:
                     int slotBet1= console.getIntFromUser("Enter the amount you want to bet on Slot");
+                    if ((slotBet1 < 0) || (slotBet1 >100) )
+                    {
+                        Printer.printMessage("Invalid bet amount entered, min bet for slot is $1 and max $100 ");
+                        break;
+                    }
                     Game slot= new SlotMachine(slotBet1);
                     slot.startGame();
+                    ((SlotMachine) slot).slotResult();
                     ((SlotMachine) slot).payout();
                     break;
 

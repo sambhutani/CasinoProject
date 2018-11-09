@@ -51,7 +51,4 @@ public class SlotTest {
         Assert.assertEquals(0,payout);
 
     }
-
-
-
 }

@@ -20,22 +20,6 @@ public class Printer {
         printMessage("Sorry, there is no game with that name, try one of: " + games);
     }
 
-    public static void getBet(String phrase){
-        printMessage("What is the " + phrase + " at the table you're looking for?");
-    }
-
-    public static void unacceptableMaxBet(int minBet){
-        printMessage("Your bet must be above " + minBet);
-    }
-
-    public static void unacceptableMinBet(){
-        printMessage("Your bet must be above $0");
-    }
-
-    public static void studHandsDealt(){
-        printMessage("Each player Dealt 3 cards");
-    }
-
     public static void showCard(Player player, Card card){
         printMessage(player.getName() + " shows a " + card.getName());
     }
@@ -55,10 +39,6 @@ public class Printer {
     public static void welcomeTo(String gameName){
         printMessage("Welcome to " + gameName + "!");
     }
-    
-    public static void wrongCommand(){
-        printMessage("Sorry, there is no game with that name.");
-    }
 
     public static void printWarTurnResult(String name, String cardName, int handSize){
         printMessage(name + " has played " + cardName + " and has " + handSize + " cards left.");
@@ -67,14 +47,5 @@ public class Printer {
     public static void playedFaceDown(String name){
         printMessage(name + " has played a card face down.");
     }
-
-    public static void startSlots(){
-        printMessage("You are all set to play a new slot game..zrrr..! \n");
-    }
-
-    public static void payOut(int payout){
-        printMessage("Your payout amount for slot machine is: $" + payout + "\n");
-    }
-
 
 }
