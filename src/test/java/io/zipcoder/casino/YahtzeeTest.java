@@ -267,4 +267,19 @@ public class YahtzeeTest {
         Assert.assertEquals(expected, actual);
 
     }
+
+    @Test
+    public void testFinalScore() {
+        //Given
+        String expected = "Your total balance is now: $" + yahtzee.getDicePlayer().getPlayer().getCurrentBalance();;
+
+        //When
+        String actual = yahtzee.getDicePlayer().balanceAtEnd();
+
+        //Then
+        Assert.assertEquals(expected, actual);
+
+    }
+
+
 }
