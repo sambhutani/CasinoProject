@@ -24,7 +24,8 @@ public abstract class CardGame {
     }
 
     //use hand size to determine dealing
-    public abstract void deal();
+    // public abstract void deal();
+    // public abstract void deal(ArrayList<CardPlayer> players); // NEEDED FOR STUD
 
     public void shuffle(){
 

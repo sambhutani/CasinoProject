@@ -4,9 +4,17 @@ import java.util.ArrayList;
 
 public class Stud extends CardGame implements Game {
     Console console = new Console();
+    private boolean isDealt = false;
+    private boolean isCardFlipped = false;
+    private int countRound = 0;
 
     public Stud(int ante) {
         super(ante);
+    }
+
+
+    public boolean getIsDealt(){
+        return isDealt;
     }
 
     public void playCard(Player player, Card card) {
@@ -23,11 +31,10 @@ public class Stud extends CardGame implements Game {
         CardPlayer winner = null;
 
         for(int i = 0; i < players.size(); i ++){
-            CardPlayer player = players.get(i);
-            int playerHandValue = handValue(player); // 'handValue' method sets 'max' value of this hand
+            int playerHandValue = handValue(players.get(i)); // 'handValue' method sets 'max' value of this hand
             if(playerHandValue > max){
                 max = playerHandValue;
-                winner = player;
+                winner = players.get(i);
             }
         }
         System.out.println("The winner is " + winner.getPlayer().getName());
@@ -127,18 +134,17 @@ public class Stud extends CardGame implements Game {
         return handValue;
     }
 
-    public void payAnte() {
+    public void payAnte(ArrayList<CardPlayer> players) {
         for(int i = 0; i < super.getPlayers().size(); i ++)
         {
-            CardPlayer player = super.getPlayers().get(i);
-            player.getPlayer().changeBalance(-super.getAnte());
+            players.get(i).getPlayer().changeBalance(-super.getAnte());
         }
     }
 
     public void startGame() {
         setHandSize(3);             //SET Hand Size for game(3)
-        payAnte();                  //PAY ante (all players)
-        deal();                     //DEALS cards/ hands to each player
+        payAnte(this.getPlayers());                  //PAY ante (all players)
+        deal(this.getPlayers());                     //DEALS cards/ hands to each player
         startRound();               //METHOD called
 
     }
@@ -149,81 +155,50 @@ public class Stud extends CardGame implements Game {
     public void startRound() {
         System.out.println("Welcome to Three Card Stud! Cards are dealt!");
         flipCard();
-        gameRound1();
+        gameRound(this.getPlayers(), countRound);
+        countRound++;
         flipCard();
-        gameRound2();
+        gameRound(this.getPlayers(), countRound);
+        countRound++;
         flipCard();
-        lastGameRound();
+        gameRound(this.getPlayers(), countRound);
         determineWinner(this.getPlayers()); //TEST ADDED ARGUMENT
     }
 
-
     /**
      * Plays through rounds that includes flipping cards face up and then betting or folding
      */
-    public void gameRound1(){
-        playersPlayCard1();
-    }
-
-    private void playersPlayCard1(){
-        for (int j = 0; j < getPlayers().size(); j++) {
-            CardPlayer player = super.getPlayers().get(j);                       //GET a player
-            playCard(player.getPlayer(), player.getHand().get(0));      //SHOW-PRINT players first CARD
-        }
-    }
-
-    /**
-     * Plays through rounds that includes flipping cards face up and then betting or folding
-     */
-    public void gameRound2(){
-        playersPlayCard2();
-    }
-
-    private void playersPlayCard2(){
-        for (int j = 0; j < getPlayers().size(); j++) {
-            CardPlayer player = super.getPlayers().get(j);                       //GET a player
-            playCard(player.getPlayer(), player.getHand().get(1));      //SHOW-PRINT players first CARD
-        }
-    }
-
-    /**
-     * PreCondition: Betting rounds already played
-     * Plays through round that include flipping last card face up
-     * PostCondtion: tablePot is now at max value
-     * DetermineWinner() expected to be called after this method
-     */
-    public void lastGameRound(){
-        for (int j = 0; j < getPlayers().size(); j++) {
-            CardPlayer player = super.getPlayers().get(j);              //GET a player
-            playCard(player.getPlayer(), player.getHand().get(2));      //SHOW-PRINT players first CARD
+    public void gameRound(ArrayList<CardPlayer> players, int countRound){
+        for (int j = 0; j < players.size(); j++) {
+            playCard(players.get(j).getPlayer(), players.get(j).getHand().get(countRound));      //SHOW-PRINT players first CARD
         }
     }
 
     /**
      * Deal each player(and dealer) 3 face down cards in turn
      */
-    public void deal() {
+    public void deal(ArrayList<CardPlayer> players) {
         for(int i = 0; i < getHandSize(); i ++){                        //OUTER loop - run 3 times as there are 3 cards per hand
-            for (int j = 0; j < getPlayers().size(); j++) {             //INNER loop through each player
-                Card card = super.getDeck().pullCard();                     //PULL card from deck (removed from deck)
-                CardPlayer player = super.getPlayers().get(j);              //GET a player
-                player.getHand().add(card);                                 //ADD card to player hand
+            for (int j = 0; j < players.size(); j++) {             //INNER loop through each player
+                players.get(j).getHand().add(getDeck().pullCard());                                 //ADD card to player hand
             }
         }
+        isDealt = true;
     }
 
-    public void flipCard()
+    public boolean flipCard()
     {
-        boolean flipnextCard = false;
-        while(!flipnextCard) {
+        isCardFlipped = false;
+        while(!isCardFlipped) {
             String input = "";
             input = console.getCMDFromUser("Type 'FLIP' to play the cards at the top of your pile");
             if (input.equals("flip")) {
-                break;
+                isCardFlipped = true;
             } else {
                 System.out.println("Sorry, I don't understand that command.");
             }
         }
+        return isCardFlipped;
     }
 
     public void quit() {}
