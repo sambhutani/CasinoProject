@@ -42,7 +42,7 @@ public class Casino {
     {
         while(running) {
 
-            Printer.pickGameMsg();
+            Printer.printMessage("Please choose a game to play!");
             Printer.printMessage(getGameListing());
 
             int command = console.getIntFromUser("Please choose a game to play by entering the number next to the game.");
@@ -53,6 +53,7 @@ public class Casino {
                     Game war = new War(10);
                     ((War) war).addPlayers(player);
                     ((War) war).addNpc();
+                    game = war;
                     war.startGame();
                     break;
 
@@ -60,6 +61,7 @@ public class Casino {
                     Game stud = new Stud(10);
                     ((Stud) stud).addPlayers(player);
                     ((Stud) stud).addNpc();
+                    game = stud;
                     stud.startGame();
                     break;
 
@@ -67,6 +69,7 @@ public class Casino {
                     int slotBet1= console.getIntFromUser("Enter the amount you want to bet on Slot");
                     Game slot= new SlotMachine(slotBet1);
                     slot.startGame();
+                    game = slot;
                     ((SlotMachine) slot).payout();
                     break;
 
@@ -76,6 +79,7 @@ public class Casino {
                     int betAmount = console.getIntFromUser("How much would you like to bet on this game?");
                     ((Yahtzee) yahtzee).setBid(betAmount);
                     ((Yahtzee) yahtzee).bet(betAmount);
+                    game = yahtzee;
                     yahtzee.startRound();
                     Printer.printMessage("You scored " + ((Yahtzee) yahtzee).getDicePlayer().getScoreSheet().getTotalScore() + " points.");
                     ((Yahtzee) yahtzee).payout();
@@ -84,7 +88,7 @@ public class Casino {
 
                 case 5:
                     running = false;
-                    Printer.closeGameMsg();
+                    Printer.printMessage("Thanks for the money chump!");
                     break;
 
                 default:
@@ -119,5 +123,13 @@ public class Casino {
 
     public void setPlayer(Player player) {
         this.player = player;
+    }
+
+    public ArrayList<String> getGameLib() {
+        return gameLib;
+    }
+
+    public Game getGame() {
+        return game;
     }
 }

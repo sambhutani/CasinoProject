@@ -13,7 +13,7 @@ public class Stud extends CardGame implements Gamble, Game {
     
     public void playCard(Player player, Card card) {
         card.setVisibility(true);               //CARD isVISIBLE
-        Printer.showCard(player, card);         //PRINT card name to CONSOLE
+        Printer.printMessage(player.getName() + " shows a " + card.getName());         //PRINT card name to CONSOLE
     }
 
 
