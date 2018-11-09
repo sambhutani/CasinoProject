@@ -98,4 +98,22 @@ public class SlotTest {
 
 
     }
+
+    @Test
+    public void testPayout() {
+        //Given
+        SlotMachine game = new SlotMachine(100, player);
+        int expected = 500;
+
+        //When
+        game.bet(100);
+        game.setPayoutAmt(200);
+        game.payout();
+        int actual = game.getPlayer().getCurrentBalance();
+
+        //Then
+        Assert.assertEquals(expected, actual);
+
+
+    }
 }

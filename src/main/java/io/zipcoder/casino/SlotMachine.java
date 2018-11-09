@@ -41,14 +41,7 @@ public class SlotMachine implements Game, Gamble {
         }
         Printer.printMessage("Your slot is in progress" + "\n");
 
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        generateWords();
-
+        startRound();
     }
 
     public void generateWords() {
@@ -94,18 +87,18 @@ public class SlotMachine implements Game, Gamble {
             if(((!word1.equals(word2)) )&& ((!word1.equals(word3))) && ((!word2.equals(word3)))){
 
                 outputword= outputword + "\n"+" You have won $0";
-                payoutAmt=0;
+                setPayoutAmt(0);
             }
             else if( (word1.equals(word2) && (!word1.equals(word3))) || ((word1.equals(word3)) && (!word1.equals(word2))) || ((word2.equals(word3)) && (!word2.equals(word1)))){
 
                 outputword= outputword + "\n" +" You have won $" + (betAmount*2);
-                payoutAmt=betAmount*2;
+                setPayoutAmt(betAmount*2);
             }
 
 
             else if(word1.equals(word2) && word1.equals(word3)) {
                 outputword= outputword + "\n" + "You have won $" + (betAmount*3);
-                payoutAmt=betAmount*3;
+                setPayoutAmt(betAmount*3);
             }
 
             Printer.printMessage(( outputword + "\n" ));
@@ -119,11 +112,23 @@ public class SlotMachine implements Game, Gamble {
 
     @Override
     public void startRound() {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
+        generateWords();
     }
+
     public int getPayoutAmt() {
         return payoutAmt;
     }
+
+    public void setPayoutAmt(int payoutAmt) {
+        this.payoutAmt = payoutAmt;
+    }
+
     public void setWord1(String word1) {
         this.word1 = word1;
     }
