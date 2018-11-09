@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 public class Printer {
 
+    public static void printMessage(String string) {
+        System.out.println(string);
+    }
+
     public static void noMatchingGameName(ArrayList<String> gameNames){
 
         String games = "";
@@ -13,44 +17,34 @@ public class Printer {
         }
         games = games.trim();
 
-        System.out.println("Sorry, there is no game with that name, try one of: " + games);
-    }
-
-    public static void getBet(String phrase){
-        System.out.println("What is the " + phrase + " at the table you're looking for?");
-    }
-
-    public static void unacceptableMaxBet(int minBet){
-        System.out.println("Your bet must be above " + minBet);
-    }
-
-    public static void unacceptableMinBet(){
-        System.out.println("Your bet must be above $0");
-    }
-
-    public static void studHandsDealt(){
-        System.out.println("Each player Dealt 3 cards");
+        printMessage("Sorry, there is no game with that name, try one of: " + games);
     }
 
     public static void showCard(Player player, Card card){
-        System.out.println(player.getName() + " shows a " + card.getName());
+        printMessage(player.getName() + " shows a " + card.getName());
     }
 
     public static void pickGameMsg(){
-        System.out.println("Please choose a game to play!");
+        printMessage("Please choose a game to play!");
     }
 
     public static void closeGameMsg(){
-        System.out.println("Thanks for your money chump!");
-    }
-
-    public static void printMessage(String string) {
-        System.out.println(string);
+        printMessage("Thanks for your money chump!");
     }
 
     public static void pleaseEnterNum(){
-        System.out.println("Please enter a number");
+        printMessage("Please enter a number");
+    }
+    
+    public static void welcomeTo(String gameName){
+        printMessage("Welcome to " + gameName + "!");
     }
 
+    public static void printWarTurnResult(String name, String cardName, int handSize){
+        printMessage(name + " has played " + cardName + " and has " + handSize + " cards left.");
+    }
 
+    public static void playedFaceDown(String name){
+        printMessage(name + " has played a card face down.");
+    }
 }

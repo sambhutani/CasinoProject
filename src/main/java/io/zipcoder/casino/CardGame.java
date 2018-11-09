@@ -32,7 +32,6 @@ public abstract class CardGame {
 
     }
 
-
     public Deck getDeck() {
         return deck;
     }
