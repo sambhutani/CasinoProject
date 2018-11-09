@@ -8,8 +8,6 @@ import java.util.HashMap;
 public abstract class CardGame {
 
     private int tablePot;
-    private int minBet;
-    private int maxBet;
     private int handSize;
     private int ante;
     private CardPlayer playersTurn;
@@ -21,16 +19,6 @@ public abstract class CardGame {
 
     CardGame(int ante){
         this.ante = ante;
-    }
-
-    //use hand size to determine dealing
-    // public abstract void deal();
-    // public abstract void deal(ArrayList<CardPlayer> players); // NEEDED FOR STUD
-
-    public void shuffle(){
-
-        //shuffle the card stack
-
     }
 
     public Deck getDeck() {
@@ -47,7 +35,6 @@ public abstract class CardGame {
             this.players.add(cardPlayer);
         }
     }
-
 
     public int getAnte(){
         return ante;
@@ -85,7 +72,7 @@ public abstract class CardGame {
         addPlayers(new NPC("Opponant", getAnte()));
     }
 
-    public void chooseStatingPlayer(){
+    public void chooseStartingPlayer(){
         //loop through the players
         for(int i = 0; i < getPlayers().size(); i ++){
             //if one is not an NPC

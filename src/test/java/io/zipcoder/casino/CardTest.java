@@ -17,4 +17,5 @@ public class CardTest {
         System.out.println(card.getName());
         System.out.println(card1.getName());
     }
+
 }
