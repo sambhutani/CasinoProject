@@ -37,4 +37,5 @@ public class CardTest {
         boolean after = card.isVisible();
         Assert.assertNotEquals(before, after);
     }
+
 }

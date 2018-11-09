@@ -25,7 +25,7 @@ public class WarTest {
         War war = new War(10);
         Player player = new Player("Jon", 100);
         war.addPlayers(player);
-        war.chooseStatingPlayer();
+        war.chooseStartingPlayer();
         war.deal();
         war.getPlayers().get(0).setDiscard(deck);
 
@@ -39,7 +39,7 @@ public class WarTest {
         War war = new War(10);
         Player player = new Player("Jon", 100);
         war.addPlayers(player);
-        war.chooseStatingPlayer();
+        war.chooseStartingPlayer();
         war.playCard(false);
 
         Assert.assertEquals(war.getLoser(), player);

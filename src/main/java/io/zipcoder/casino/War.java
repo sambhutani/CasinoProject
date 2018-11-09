@@ -1,11 +1,6 @@
 package io.zipcoder.casino;
 
 import java.util.*;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-import java.util.regex.Pattern;
-import java.util.concurrent.TimeUnit;
 
 public class War extends CardGame implements Gamble, Game {
 
@@ -117,7 +112,7 @@ public class War extends CardGame implements Gamble, Game {
 
     public void startGame(){
         Printer.printMessage("Welcome to War!");
-        super.chooseStatingPlayer();
+        super.chooseStartingPlayer();
         payAnte();
         deal();
         startRound();

@@ -246,7 +246,7 @@ public class StudTest {
         stud.payAnte(players);
         System.out.println(players.get(0).getPlayer().getCurrentBalance());
         //WHEN @Before
-        int expected = 10;
+        int expected = 0;
         //THEN
         int actual = players.get(0).getPlayer().getCurrentBalance();
 
