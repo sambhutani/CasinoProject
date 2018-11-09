@@ -24,7 +24,6 @@ public class SlotMachine implements Game, Gamble {
 
     @Override
     public void payout(){
-
         Printer.printMessage("Your payout amount for slot machine is: $" + payout + "\n");
     }
 

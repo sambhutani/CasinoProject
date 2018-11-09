@@ -1,8 +1,8 @@
 package io.zipcoder.casino;
 
 
-import org.junit.jupiter.api.Test;
-import sun.jvm.hotspot.utilities.Assert;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class SlotTest {
 

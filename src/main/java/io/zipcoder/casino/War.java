@@ -29,9 +29,9 @@ public class War extends CardGame implements Gamble, Game {
     public void playCardInHand(boolean cardFace){
         Card card = getCardFromHand(cardFace);
         if(cardFace) {
-            Printer.printWarTurnResult(super.getPlayersTurn().getPlayer().getName(), card.getName(), super.getPlayersTurn().getHand().size());
+            Printer.printMessage(super.getPlayersTurn().getPlayer().getName() + " has played a " + card.getName() + " and has " + super.getPlayersTurn().getHand().size() + " cards left.");
         } else {
-            Printer.playedFaceDown(super.getPlayersTurn().getPlayer().getName());
+            Printer.printMessage(super.getPlayersTurn().getPlayer().getName() + " has played a card face down.");
         }
     }
 
@@ -114,10 +114,8 @@ public class War extends CardGame implements Gamble, Game {
         }
     }
 
-    public void quit() { }
-
-    public void startGame() {
-        Printer.welcomeTo("War");
+    public void startGame(){
+        Printer.printMessage("Welcome to War!");
         super.chooseStatingPlayer();
         payAnte();
         deal();
@@ -157,6 +155,5 @@ public class War extends CardGame implements Gamble, Game {
             }
         }
         Printer.printMessage(super.getPlayersTurn().getPlayer().getName() + "has: " + super.getPlayersTurn().getHand().size() + " cards.");
-
     }
 }

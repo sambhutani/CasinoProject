@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Console {
+
     private Scanner scanner = new Scanner(System.in);
 
     Console(){
@@ -23,7 +24,7 @@ public class Console {
             int num = scanner.nextInt();
             return num;
         }catch(InputMismatchException err){
-            Printer.pleaseEnterNum();
+            Printer.printMessage("Please enter a number.");
             scanner.next();
         }
         return -1;
@@ -41,5 +42,13 @@ public class Console {
         String input = scanner.nextLine();
         input.toLowerCase().trim();
         return input;
+    }
+
+    public void setScanner(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
+    public Scanner getScanner() {
+        return scanner;
     }
 }
