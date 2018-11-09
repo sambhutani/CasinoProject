@@ -114,12 +114,16 @@ public class War extends CardGame implements Gamble, Game {
         }
     }
 
+    @Override
+    public void startGame() {
         Printer.welcomeTo("War");
         super.chooseStatingPlayer();
         payAnte();
         deal();
         startRound();
     }
+
+
 
     public void startRound() {
         while(super.getLoser() == null) {
