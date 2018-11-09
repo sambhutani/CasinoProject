@@ -4,8 +4,8 @@ package io.zipcoder.casino;
 import org.junit.Test;
 import org.junit.Assert;
 
-public class SlotTest {
 
+public class SlotTest {
 
     @Test
     public void testSlotResult1(){
@@ -15,9 +15,12 @@ public class SlotTest {
         String word3="MOUSE";
         //given
         SlotMachine slotmachine = new SlotMachine(betAmount);
+        slotmachine.setWord1(word1);
+        slotmachine.setWord2(word2);
+        slotmachine.setWord3(word3);
 
         slotmachine.slotResult();
-        int payout=slotmachine.payout;
+        int payout = slotmachine.getPayoutAmt();
         Assert.assertEquals(30,payout);
     }
 
@@ -28,11 +31,17 @@ public class SlotTest {
         String word1="MOUSE";
         String word2="MOUSE";
         String word3="CAT";
+
+
         //given
         SlotMachine slotmachine = new SlotMachine(betAmount);
 
+        slotmachine.setWord1(word1);
+        slotmachine.setWord2(word2);
+        slotmachine.setWord3(word3);
+
         slotmachine.slotResult();
-        int payout=slotmachine.payout;
+        int payout=slotmachine.getPayoutAmt();
         Assert.assertEquals(20,payout);
 
     }
@@ -43,15 +52,17 @@ public class SlotTest {
         String word1="MOUSE";
         String word2="RABBIT";
         String word3="CAT";
+
         //given
         SlotMachine slotmachine = new SlotMachine(betAmount);
 
+        slotmachine.setWord1(word1);
+        slotmachine.setWord2(word2);
+        slotmachine.setWord3(word3);
+
         slotmachine.slotResult();
-        int payout=slotmachine.payout;
+        int payout=slotmachine.getPayoutAmt();
         Assert.assertEquals(0,payout);
 
     }
-
-
-
 }
