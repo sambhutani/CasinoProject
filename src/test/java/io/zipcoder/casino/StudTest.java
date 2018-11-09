@@ -242,7 +242,7 @@ public class StudTest {
     public void payAnteTest(){
         stud.payAnte(players);
         //WHEN @Before
-        int expected = 10;
+        int expected = 0;
         //THEN
         int actual = players.get(0).getPlayer().getCurrentBalance();
 
