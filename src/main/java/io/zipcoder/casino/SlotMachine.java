@@ -12,18 +12,23 @@ public class SlotMachine implements Game, Gamble {
     String word2="";
     String word3="";
     double totalBet=0;
+    Player player;
 
-    public SlotMachine(int betAmount) {
+    public SlotMachine(int betAmount, Player player) {
+
         this.betAmount = betAmount;
+        this.player = player;
     }
 
     @Override
     public void bet(int betAmount) {
-        this.betAmount= betAmount;
+        player.changeBalance(-betAmount);
     }
 
     public void payout(){
+        getPlayer().changeBalance(payoutAmt);
         Printer.printMessage("Your payout amount for slot machine is: $" + payoutAmt + "\n");
+
     }
 
     @Override
@@ -42,9 +47,11 @@ public class SlotMachine implements Game, Gamble {
             e.printStackTrace();
         }
 
+        generateWords();
 
-        outputword = "";
+    }
 
+    public void generateWords() {
         Random rand = new Random();
 
         for (int i = 1; i <= 3; i++) {
@@ -79,13 +86,11 @@ public class SlotMachine implements Game, Gamble {
                 word3 = word;
             }
         }
-
+        outputword= "[ " + word1+ " ]" + "   " + "[ " + word2 + " ]" + "   "+ "[ " + word3 + " ]" + "\n" ;
     }
 
     public void slotResult()
     {
-            outputword= "[ " + word1+ " ]" + "   " + "[ " + word2 + " ]" + "   "+ "[ " + word3 + " ]" + "\n" ;
-
             if(((!word1.equals(word2)) )&& ((!word1.equals(word3))) && ((!word2.equals(word3)))){
 
                 outputword= outputword + "\n"+" You have won $0";
@@ -98,7 +103,7 @@ public class SlotMachine implements Game, Gamble {
             }
 
 
-            else if(word1.equals(word2) && word1.equals(word3)  /*&& ((word2.equals(word1)) && (word2.equals(word3))) && ( (word3.equals(word1)) && (word3.equals(word2)))*/){
+            else if(word1.equals(word2) && word1.equals(word3)) {
                 outputword= outputword + "\n" + "You have won $" + (betAmount*3);
                 payoutAmt=betAmount*3;
             }
@@ -130,5 +135,14 @@ public class SlotMachine implements Game, Gamble {
     public void setWord3(String word3) {
         this.word3 = word3;
     }
+
+    public String getOutputword() {
+        return outputword;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
 }
 
