@@ -18,12 +18,12 @@ public class Stud extends CardGame implements Game {
      * Determine what player wins by looping through player array and then
      * passing each hand to the 'handValue' method
      */
-    public CardPlayer determineWinner(){
+    public CardPlayer determineWinner(ArrayList<CardPlayer> players){
         int max = 0;
         CardPlayer winner = null;
 
-        for(int i = 0; i < getPlayers().size(); i ++){
-            CardPlayer player = getPlayers().get(i);
+        for(int i = 0; i < players.size(); i ++){
+            CardPlayer player = players.get(i);
             int playerHandValue = handValue(player); // 'handValue' method sets 'max' value of this hand
             if(playerHandValue > max){
                 max = playerHandValue;
@@ -64,7 +64,7 @@ public class Stud extends CardGame implements Game {
      * @param card1
      * @return
      */
-    private int threeOfAKindHandValue(int card1){
+    public int threeOfAKindHandValue(int card1){
         int handValue;
         handValue = card1 * 1000000;
         return handValue;
@@ -77,7 +77,7 @@ public class Stud extends CardGame implements Game {
      * @param card3
      * @return
      */
-    private int onePairHandValue(int card1, int card2, int card3){
+    public int onePairHandValue(int card1, int card2, int card3){
         int handValue = 0;
 
         if (card1 == card2){
@@ -100,8 +100,8 @@ public class Stud extends CardGame implements Game {
      * @param card3
      * @return
      */
-    private int highCardHandValue(int card1, int card2, int card3){
-        int handValue;
+    public int highCardHandValue(int card1, int card2, int card3){
+        int handValue = 0;
         // Card1 is Highest
         if (card1 > card2 && card1 > card3 && card2 > card3) {
             handValue = (card1 * 100) + (card2 * 10) + card3;
@@ -117,24 +117,14 @@ public class Stud extends CardGame implements Game {
             handValue = (card2 * 100) + (card3 * 10) + card1;
         }
         // Card3 is Highest
-        else if (card3 > card1 && card3 > card2 && card1 > card3) {
-            handValue = (card3 * 100) + (card1 * 10) + card3;
+        else if (card3 > card1 && card3 > card2 && card1 > card2) {
+            handValue = (card3 * 100) + (card1 * 10) + card2;
         }
-        else if (card3 > card1 && card3 > card2 && card3 > card1) {
-            handValue = (card3 * 100) + (card3 * 10) + card1;
+        else if (card3 > card1 && card3 > card2 && card2 > card1) {
+            handValue = (card3 * 100) + (card2 * 10) + card1;
         }
-        else {
-            handValue = 0;
-        }
+        else {}
         return handValue;
-    }
-
-
-    public void payout(){
-        if(super.getWinner() != null){
-            super.getWinner().changeBalance(super.getTablePot());
-        }
-        System.out.println(getWinner().getName() + " won: " + super.getTablePot());
     }
 
     public void payAnte() {
@@ -164,7 +154,7 @@ public class Stud extends CardGame implements Game {
         gameRound2();
         flipCard();
         lastGameRound();
-        determineWinner();
+        determineWinner(this.getPlayers()); //TEST ADDED ARGUMENT
     }
 
 
@@ -237,5 +227,6 @@ public class Stud extends CardGame implements Game {
     }
 
     public void quit() {}
+    // public void payout(){ }
 }
 
