@@ -63,6 +63,5 @@ public class SlotTest {
         slotmachine.slotResult();
         int payout=slotmachine.getPayoutAmt();
         Assert.assertEquals(0,payout);
-
     }
 }

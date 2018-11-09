@@ -27,11 +27,6 @@ public abstract class CardGame {
     // public abstract void deal();
     // public abstract void deal(ArrayList<CardPlayer> players); // NEEDED FOR STUD
 
-    public void shuffle(){
-
-        //shuffle the card stack
-
-    }
 
     public Deck getDeck() {
         return deck;

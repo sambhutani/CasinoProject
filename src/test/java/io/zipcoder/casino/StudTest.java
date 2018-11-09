@@ -244,6 +244,7 @@ public class StudTest {
     @Test //Either payAnte or Test is broken, Ante is not deducted. Test set to pass
     public void payAnteTest(){
         stud.payAnte(players);
+        System.out.println(players.get(0).getPlayer().getCurrentBalance());
         //WHEN @Before
         int expected = 10;
         //THEN
