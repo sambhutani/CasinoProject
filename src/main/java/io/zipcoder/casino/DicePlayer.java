@@ -19,9 +19,23 @@ public class DicePlayer {
         return cup;
     }
 
-    public void printCup() {
+    public String cupToString() {
+
+        String cupString = "";
+
         for(Dice d : cup) {
-            System.out.print(d.getValue() + " ");
+            cupString += (d.getValue() + " ");
         }
+        return cupString;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public String balanceAtEnd() {
+        return "Your total balance is now: $" + getPlayer().getCurrentBalance();
     }
 }
+
+

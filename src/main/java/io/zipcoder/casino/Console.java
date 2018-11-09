@@ -1,27 +1,54 @@
 package io.zipcoder.casino;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class Console {
-    private Game[] games;
-    private Player player;
 
-    Console(){}
+    private Scanner scanner = new Scanner(System.in);
 
-    public void createAccount()
-    {
-        /*
-            ask the player for their name.
-            ask the player for their starting balance
-            create the player.
-         */
+    Console(){
+
     }
 
-    public void chooseGame(String gameName)
+    public Player createAccount()
     {
-        /*
-            ask the user for min max bet at the table
-            ask the user which game they would like to play
-            create a new game with min and max set based
-            on user input
-         */
+        String name = getLineFromUser("Hello, what is your name?");
+        int balance = getIntFromUser("How much money are you bringing to the table?");
+        return new Player(name, balance);
+    }
+
+    public int getIntFromUser(String message){
+        Printer.printMessage(message);
+        try{
+            int num = scanner.nextInt();
+            return num;
+        }catch(InputMismatchException err){
+            Printer.printMessage("Please enter a number.");
+            scanner.next();
+        }
+        return -1;
+    }
+
+    public String getCMDFromUser(String msg){
+        Printer.printMessage(msg);
+        String input = scanner.next();
+        input.toLowerCase().trim();
+        return input;
+    }
+
+    public String getLineFromUser(String msg){
+        Printer.printMessage(msg);
+        String input = scanner.nextLine();
+        input.toLowerCase().trim();
+        return input;
+    }
+
+    public void setScanner(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
+    public Scanner getScanner() {
+        return scanner;
     }
 }
