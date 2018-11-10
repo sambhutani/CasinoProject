@@ -9,10 +9,11 @@ import java.util.Random;
 
 
 public class SlotTest {
-    private int betAmount = 10;
-    private SlotMachine slotmachine = new SlotMachine(betAmount);
-
     Player player = new Player("Bob", 400);
+    private int betAmount = 10;
+    private SlotMachine slotmachine = new SlotMachine(betAmount, player);
+
+
 
     @Test
     public void testSlotResult1(){
@@ -122,7 +123,7 @@ public class SlotTest {
     @Test
     public void testSetBetAmount(){
         int betAmount=10;
-        SlotMachine slotmachine = new SlotMachine(betAmount);
+        SlotMachine slotmachine = new SlotMachine(betAmount, player);
 
         int newBet = 40;
 
